@@ -199,14 +199,14 @@ const TestPage = () => {
       <div className="hidden xl:block xl:absolute xl:top-0">
         <img src="./top-test.png" alt="" className="w-full" />
       </div>
-      <div className="xl:flex justify-center xl:mt-24 mb-5">
+      <div className="xl:flex justify-center xl:mt-5 mb-5">
         <div className="xl:w-9/12 flex justify-center">
           {!cond && (
             <div className="w-11/12 mt-2 bg-blue-800 text-white rounded-lg p-3 drop-shadow-xl">
               {Data ? (
                 <div>
                   <div className="flex justify-between">
-                    <div className="py-1 text-sm px-2 mb-5 xl:mb-0 bg-blue-400 w-24 rounded-lg text-black text-center font-semibold">
+                    <div className="py-1 text-sm px-2 mb-5  bg-blue-400 w-24 rounded-lg text-black text-center font-semibold">
                       <p
                         className="text-center bg-blue-200 mb-1 rounded-lg"
                         style={{ fontSize: "10px" }}

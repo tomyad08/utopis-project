@@ -30,7 +30,7 @@ const HasilTest = () => {
     <div className="bg-blue-100 h-screen flex justify-center items-center">
       <div>
         <div
-          className="font-semibold absolute top-2 right-4"
+          className="font-semibold absolute top-2 right-4 cursor-pointer"
           onClick={() => navigate("/menu", { state: location.state.datasiswa })}
         >
           <p className="bg-blue-300 py-2 px-5 m-2 rounded-lg">Utopis</p>
@@ -43,13 +43,19 @@ const HasilTest = () => {
           <p className="text-end font-semibold">Mila Afiatul Hikmah S.Pd</p>
           <p className="text-end">President of Utopis Project</p>
         </div>
-        <div className="columns-7 w-full absolute bottom-0 justify-center bg-blue-200 p-4 rounded-lg">
+        <div className="columns-7 xl:mt-5 w-full absolute bottom-0 xl:relative justify-center bg-blue-200 p-4 rounded-lg">
           {Mapel.map((value) => (
-            <div key={value.id} onClick={() => handleSelect(value.link)}>
-              <div className="bg-blue-400 text-white rounded-full text-center text-sm p-2 mb-3">
-                <img src={value.picture} className="w-16" />
+            <div
+              className="cursor-pointer"
+              key={value.id}
+              onClick={() => handleSelect(value.link)}
+            >
+              <div className="bg-blue-400 text-white flex justify-center rounded-full xl:rounded-lg text-center text-sm p-2 mb-3">
+                <img src={value.picture} className="w-16 xl:w-10" />
               </div>
-              <p className="text-sm text-center">{value.inisial}</p>
+              <p className="text-sm text-center xl:font-semibold">
+                {value.inisial}
+              </p>
             </div>
           ))}
         </div>
