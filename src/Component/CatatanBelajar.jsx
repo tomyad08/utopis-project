@@ -48,7 +48,6 @@ const CatatanBelajar = () => {
       color: "green",
     },
   ];
-  console.log(data);
   return (
     <div className="p-5">
       <h1 className="text-sm font-semibold text-blue-700">Catatan Belajar</h1>

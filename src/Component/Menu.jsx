@@ -37,14 +37,24 @@ const Menu = () => {
             Daya Tampung Kampus
           </button>
         </a>
-        <a href={location.state.link_st30}>
+        {location.state.link_st30 ? (
+          <a href={location.state.link_st30}>
+            <button
+              className="py-2 px-4 text-center text-white rounded-lg bg-red-500 mt-2"
+              style={{ fontSize: "12px" }}
+            >
+              Test Strength Typologi 30
+            </button>
+          </a>
+        ) : (
           <button
             className="py-2 px-4 text-center text-white rounded-lg bg-red-500 mt-2"
             style={{ fontSize: "12px" }}
+            onClick={() => navigate("/no-link")}
           >
             Test Strength Typologi 30
           </button>
-        </a>
+        )}
       </div>
     </div>
   );
