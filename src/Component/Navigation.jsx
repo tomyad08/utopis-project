@@ -1,6 +1,16 @@
 import { useLocation } from "react-router-dom";
 
 const NavigationBar = () => {
+  const data = [
+    {
+      id: 1,
+      gambar: "./Banner.PNG",
+    },
+    {
+      id: 2,
+      gambar: "./voucher.PNG",
+    },
+  ];
   const location = useLocation();
   return (
     <div>
@@ -14,8 +24,10 @@ const NavigationBar = () => {
           </div>
         </div>
       </div>
-      <div>
-        <img src="./Banner.PNG" alt=" " className="w-full" />
+      <div className="overflow-x-scroll flex">
+        {data.map((value) => (
+          <img src={value.gambar} className="w-11/12" />
+        ))}
       </div>
     </div>
   );
