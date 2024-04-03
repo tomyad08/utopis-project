@@ -26,7 +26,7 @@ const NavigationBar = () => {
       </div>
       <div className="overflow-x-scroll flex">
         {data.map((value) => (
-          <img src={value.gambar} className="w-11/12" />
+          <img src={value.gambar} className="w-11/12" key={value.id} />
         ))}
       </div>
     </div>
