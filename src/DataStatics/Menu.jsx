@@ -4,6 +4,8 @@ exports.Mapel = [
   {
     id: 1,
     inisial: "PU",
+    time: 1800,
+    jumlah: 30,
     picture: "./pu.png",
     mapel: "Penalaran Umum",
     deskripsi:
@@ -13,6 +15,8 @@ exports.Mapel = [
   {
     id: 2,
     inisial: "PM",
+    time: 1800,
+    jumlah: 20,
     picture: "./pm.png",
     mapel: "Penalaran Matematika",
     deskripsi:
@@ -22,6 +26,8 @@ exports.Mapel = [
   {
     id: 3,
     inisial: "PK",
+    time: 1200,
+    jumlah: 15,
     mapel: "Pengetahuan Kuantitatif",
     picture: "./pk.png",
     deskripsi: "Kemampuan memecahkan masalah matematis sederhana.",
@@ -30,6 +36,8 @@ exports.Mapel = [
   {
     id: 4,
     inisial: "PPU",
+    time: 900,
+    jumlah: 20,
     picture: "./ppu.png",
     mapel: "Pengetahuan & Pemahaman Umum",
     deskripsi:
@@ -39,6 +47,8 @@ exports.Mapel = [
   {
     id: 5,
     inisial: "PBM",
+    time: 1500,
+    jumlah: 20,
     mapel: "Pemahaman Bacaan & Menulis",
     picture: "./pbm.png",
     deskripsi: "Kemampuan dasar untuk memahami bacaan dan menulis.",
@@ -47,6 +57,8 @@ exports.Mapel = [
   {
     id: 6,
     inisial: "LBIND",
+    time: 2700,
+    jumlah: 30,
     picture: "./lbin.png",
     mapel: "Literasi Bahasa Indonesia",
     deskripsi:
@@ -56,6 +68,8 @@ exports.Mapel = [
   {
     id: 7,
     inisial: "LBING",
+    time: 1800,
+    jumlah: 20,
     picture: "./lbin.png",
     mapel: "Literasi Bahasa Inggris",
     deskripsi:

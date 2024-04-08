@@ -6,7 +6,9 @@ import { useEffect, useState } from "react";
 import { ENPOINTS } from "../DataStatics/endpoints";
 
 const TestPage = () => {
-  const timeout = 800;
+  const location = useLocation();
+  const navigate = useNavigate();
+  const timeout = location.state.select;
   const [Data, setData] = useState("");
   const [count, setCount] = useState(1);
   const [countDown, setCountdown] = useState(timeout);
@@ -14,9 +16,6 @@ const TestPage = () => {
   const [notif, setNotif] = useState("");
   const [cond, setCond] = useState(false);
   const [Loading, setLoading] = useState(false);
-
-  const location = useLocation();
-  const navigate = useNavigate();
 
   const getData = async (data) => {
     let setNumber = [];
@@ -107,7 +106,7 @@ const TestPage = () => {
       sekolah: location.state.datasiswa.sekolah,
       kode_soal: Data[0].kode_soal,
       tryout: Data[0].tryout,
-      nilai: result,
+      nilai: result / location.state.jumlah,
     };
 
     var formData = new FormData();
@@ -118,7 +117,7 @@ const TestPage = () => {
     }
 
     const data = {
-      nilai: Math.floor(result),
+      nilai: Math.floor(result / location.state.jumlah),
       datasiswa: location.state.datasiswa,
     };
 

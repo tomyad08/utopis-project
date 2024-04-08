@@ -7,7 +7,9 @@ const Menu = () => {
   const handleSelect = (value) => {
     const data = {
       datasiswa: location.state,
-      linkto: value,
+      linkto: value.link,
+      select: value.time,
+      jumlah: value.jumlah,
     };
     navigate("/test", {
       state: data,
@@ -18,7 +20,7 @@ const Menu = () => {
       <h1 className="text-sm font-semibold text-blue-700">Try-out</h1>
       <div className="columns-7 justify-center w-full bg-blue-100 p-4 rounded-lg">
         {Mapel.map((value) => (
-          <div key={value.id} onClick={() => handleSelect(value.link)}>
+          <div key={value.id} onClick={() => handleSelect(value)}>
             <div className="bg-blue-400 text-white rounded-full xl:rounded-lg flex justify-center text-center text-sm p-2 mb-3">
               <img src={value.picture} className="w-16" />
             </div>
