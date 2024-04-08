@@ -96,7 +96,7 @@ const TestPage = () => {
     let result = 0;
     for (let i = 0; i < Data.length; i++) {
       if (Data[i].jawaban === no[i].select) {
-        result += 100;
+        result += 1000;
       }
     }
 
