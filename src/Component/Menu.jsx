@@ -34,29 +34,39 @@ const Menu = () => {
         <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php">
           <button
             className=" py-2 px-4 text-center text-white rounded-lg bg-blue-500 mt-2"
-            style={{ fontSize: "12px" }}
+            style={{ fontSize: "10px" }}
           >
             Daya Tampung Kampus
           </button>
         </a>
-        {location.state.link_st30 ? (
-          <a href={location.state.link_st30}>
+        <div>
+          {location.state.link_st30 ? (
+            <a href={location.state.link_st30}>
+              <button
+                className="py-2 px-4 text-center text-white rounded-l-lg bg-blue-800 mt-2"
+                style={{ fontSize: "10px" }}
+              >
+                Test ST-30
+              </button>
+            </a>
+          ) : (
             <button
-              className="py-2 px-4 text-center text-white rounded-lg bg-red-500 mt-2"
-              style={{ fontSize: "12px" }}
+              className="py-2 px-4 text-center text-white rounded-l-lg bg-blue-500 mt-2"
+              style={{ fontSize: "10px" }}
+              onClick={() => navigate("/no-link")}
             >
-              Test Strength Typologi 30
+              Test ST-30
+            </button>
+          )}
+          <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php">
+            <button
+              className=" py-2 px-4 text-center text-white rounded-r-lg bg-red-500 mt-2"
+              style={{ fontSize: "10px" }}
+            >
+              Analisis ST-30
             </button>
           </a>
-        ) : (
-          <button
-            className="py-2 px-4 text-center text-white rounded-lg bg-red-500 mt-2"
-            style={{ fontSize: "12px" }}
-            onClick={() => navigate("/no-link")}
-          >
-            Test Strength Typologi 30
-          </button>
-        )}
+        </div>
       </div>
     </div>
   );

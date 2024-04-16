@@ -35,13 +35,13 @@ const FormLogin = () => {
       <form>
         <label className="text-sm text-white">Username</label>
         <input
-          className="p-2 xl:p-1 w-full bg-blue-200 rounded-lg focus:font-semibold mb-3 outline-none"
+          className="p-2 xl:p-1 w-full bg-white rounded-lg focus:font-semibold mb-3 outline-none"
           type="text"
           onChange={(e) => setUsername(e.target.value)}
         />
         <label className="text-sm text-white">Password</label>
         <input
-          className="p-2 xl:p-1 w-full bg-blue-200 rounded-lg mb-5 outline-none"
+          className="p-2 xl:p-1 w-full bg-white rounded-lg mb-5 outline-none"
           type="password"
           onChange={(e) => setPassword(e.target.value)}
         />

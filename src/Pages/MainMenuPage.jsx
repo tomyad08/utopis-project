@@ -1,7 +1,10 @@
 import CatatanBelajar from "../Component/CatatanBelajar";
+import Footer from "../Component/Footer";
 import Menu from "../Component/Menu";
 import NavigationBar from "../Component/Navigation";
 import Notes from "../Component/Notes";
+import Report from "../Component/Report";
+import Quiz from "../Component/quiz";
 
 const MainMenuPage = () => {
   return (
@@ -9,7 +12,10 @@ const MainMenuPage = () => {
       <NavigationBar />
       <Menu />
       <CatatanBelajar />
+      <Quiz />
+      <Report />
       <Notes />
+      <Footer />
     </div>
   );
 };
