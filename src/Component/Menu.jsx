@@ -10,8 +10,9 @@ const Menu = () => {
       linkto: value.link,
       select: value.time,
       jumlah: value.jumlah,
+      inisial: value.inisial,
     };
-    navigate("/test", {
+    navigate("/info-test", {
       state: data,
     });
   };

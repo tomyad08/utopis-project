@@ -5,6 +5,7 @@ import TestPage from "./Pages/Test";
 import HasilTest from "./Pages/HasilTest";
 import NoCatatan from "./Pages/NoCatatan";
 import NoLink from "./Pages/NoLink";
+import InfoTO from "./Component/InfoTO";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="/" element={<LoginPage />} />
           <Route path="/menu" element={<MainMenuPage />} />
           <Route path="/test" element={<TestPage />} />
+          <Route path="/info-test" element={<InfoTO />} />
           <Route path="/no-catatan" element={<NoCatatan />} />
           <Route path="/no-link" element={<NoLink />} />
           <Route path="/hasil-test" element={<HasilTest />} />

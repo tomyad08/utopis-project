@@ -1,5 +1,6 @@
 import CatatanBelajar from "../Component/CatatanBelajar";
 import Footer from "../Component/Footer";
+import InfoTO from "../Component/InfoTO";
 import Menu from "../Component/Menu";
 import NavigationBar from "../Component/Navigation";
 import Notes from "../Component/Notes";
