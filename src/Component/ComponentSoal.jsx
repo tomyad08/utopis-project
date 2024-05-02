@@ -4,11 +4,11 @@ const ComponentSoal = ({ input }) => {
   return (
     <div>
       <div
-        className={`p-1 mb-1 hover:scale-105 text-center hover:drop-shadow-xl font-semibold rounded-lg hover:bg-blue-600 cursor-pointer ${
+        className={` p-5 xl:p-2 mb-1 hover:scale-105 text-center hover:drop-shadow-xl font-semibold rounded-lg hover:bg-blue-600 cursor-pointer ${
           Data.select ? "bg-blue-600 text-white" : ""
         }`}
       >
-        {Data.select ? Data.select : Data.no_soal}
+        {Data.no_soal}
       </div>
     </div>
   );

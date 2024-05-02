@@ -6,6 +6,7 @@ import HasilTest from "./Pages/HasilTest";
 import NoCatatan from "./Pages/NoCatatan";
 import NoLink from "./Pages/NoLink";
 import InfoTO from "./Component/InfoTO";
+import TestQuiz from "./Component/TestQuiz";
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
           <Route path="/no-catatan" element={<NoCatatan />} />
           <Route path="/no-link" element={<NoLink />} />
           <Route path="/hasil-test" element={<HasilTest />} />
+          <Route path="/test-quiz" element={<TestQuiz />} />
         </Routes>
       </BrowserRouter>
     </div>

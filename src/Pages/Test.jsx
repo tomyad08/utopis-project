@@ -17,6 +17,11 @@ const TestPage = () => {
   const [notif, setNotif] = useState("");
   const [cond, setCond] = useState(false);
   const [Loading, setLoading] = useState(false);
+  const [cond1, setCond1] = useState("");
+  const [cond2, setCond2] = useState("");
+  const [cond3, setCond3] = useState("");
+  const [cond4, setCond4] = useState("");
+  const [isian, setIsian] = useState("");
 
   const getData = async (data) => {
     let setNumber = [];
@@ -87,6 +92,7 @@ const TestPage = () => {
   };
 
   const handleSelect = (select) => {
+    console.log(select, "ini");
     Change(select);
     setCount(count + 1);
     if (count > Data.length - 1) {
@@ -255,99 +261,262 @@ const TestPage = () => {
                       <Latex>{Data[count - 1].soal_text}</Latex>
                     </p>
                   </div>
-
-                  {Data[count - 1].pilihan_a_gambar ? (
-                    <div className="columns-1 xl:flex xl:justify-around">
-                      <div>
-                        <strong>A.</strong>
-                        <img
-                          src={Data[count - 1].pilihan_a_gambar}
-                          alt=""
-                          className="w-10/12"
-                          onClick={() => handleSelect("A")}
-                        />
+                  {Data[count - 1].isian_singkat ? (
+                    <>
+                      <input
+                        className="p-2 w-full rounded-lg focus:outline-none text-black"
+                        placeholder="Masukkan jawaban di sini ..."
+                        onChange={(e) => setIsian(e.target.value)}
+                      />
+                      <div className="flex justify-center">
+                        <button
+                          className="p-1 w-52 border border-2 border-white rounded-lg bg-red-500 mt-5"
+                          onClick={() => handleSelect(isian)}
+                        >
+                          Simpan
+                        </button>
                       </div>
-                      <div>
-                        <strong>B.</strong>
-                        <img
-                          src={Data[count - 1].pilihan_b_gambar}
-                          alt=""
-                          className="w-10/12"
-                          onClick={() => handleSelect("B")}
-                        />
-                      </div>
-                      <div>
-                        <strong>C.</strong>
-                        <img
-                          src={Data[count - 1].pilihan_c_gambar}
-                          alt=""
-                          className="w-10/12"
-                          onClick={() => handleSelect("C")}
-                        />
-                      </div>
-                      <div>
-                        <strong>D.</strong>
-                        <img
-                          src={Data[count - 1].pilihan_d_gambar}
-                          alt=""
-                          className="w-10/12"
-                          onClick={() => handleSelect("D")}
-                        />
-                      </div>
-                      <div>
-                        <strong>E.</strong>
-                        <img
-                          src={Data[count - 1].pilihan_e_gambar}
-                          alt=""
-                          className="w-10/12"
-                          onClick={() => handleSelect("E")}
-                        />
-                      </div>
-                    </div>
+                    </>
                   ) : (
-                    <div className="pb-10">
-                      <div
-                        className="w-full p-2 mb-2 border border-2 rounded-lg hover:bg-blue-400 cursor-pointer"
-                        style={{ fontSize: "12px" }}
-                        onClick={() => handleSelect("A")}
-                      >
-                        <strong>A.</strong>{" "}
-                        <Latex>{Data[count - 1].pilihan_a_text}</Latex>
-                      </div>
-                      <div
-                        className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
-                        style={{ fontSize: "12px" }}
-                        onClick={() => handleSelect("B")}
-                      >
-                        <strong>B.</strong>{" "}
-                        <Latex>{Data[count - 1].pilihan_b_text}</Latex>
-                      </div>
-                      <div
-                        className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
-                        style={{ fontSize: "12px" }}
-                        onClick={() => handleSelect("C")}
-                      >
-                        <strong>C.</strong>{" "}
-                        <Latex>{Data[count - 1].pilihan_c_text}</Latex>
-                      </div>
-                      <div
-                        className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
-                        style={{ fontSize: "12px" }}
-                        onClick={() => handleSelect("D")}
-                      >
-                        <strong>D.</strong>{" "}
-                        <Latex>{Data[count - 1].pilihan_d_text}</Latex>
-                      </div>
-                      <div
-                        className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
-                        style={{ fontSize: "12px" }}
-                        onClick={() => handleSelect("E")}
-                      >
-                        <strong>E.</strong>{" "}
-                        <Latex>{Data[count - 1].pilihan_e_text}</Latex>
-                      </div>
-                    </div>
+                    <>
+                      {Data[count - 1].pernyataan_1 ? (
+                        <>
+                          <table
+                            className="p-2 bg-blue-100 rounded-lg text-black w-full"
+                            style={{ fontSize: "12px" }}
+                          >
+                            <thead>
+                              <tr>
+                                <th className="p-1 xl:p-2 border border-1 border-black">
+                                  Pernyataan
+                                </th>
+                                <th className="p-1 xl:p-2 border border-1 border-black">
+                                  {Data[count - 1].head_1}
+                                </th>
+                                <th className="p-1 xl:p-2 border border-1 border-black">
+                                  {Data[count - 1].head_2}
+                                </th>
+                              </tr>
+                            </thead>
+                            <tbody>
+                              <tr className="p-2 rounded-lg border border-1">
+                                <td className="text-center p-1 xl:p-2 border border-1 border-black">
+                                  {Data[count - 1].pernyataan_1}
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_1"
+                                      value={Data[count - 1].head_1}
+                                      onChange={(e) => setCond1(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_1"
+                                      value={Data[count - 1].head_2}
+                                      onChange={(e) => setCond1(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr className="p-2">
+                                <td className="p-1 xl:p-2 border border-1 border-black text-center">
+                                  {Data[count - 1].pernyataan_2}
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_2"
+                                      value={Data[count - 1].head_1}
+                                      onChange={(e) => setCond2(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_2"
+                                      value={Data[count - 1].head_2}
+                                      onChange={(e) => setCond2(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr className="p-2">
+                                <td className="p-1 xl:p-2 border border-1 border-black text-center">
+                                  {Data[count - 1].pernyataan_3}
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_3"
+                                      value={Data[count - 1].head_1}
+                                      onChange={(e) => setCond3(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_3"
+                                      value={Data[count - 1].head_2}
+                                      onChange={(e) => setCond3(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                              <tr className="p-2">
+                                <td className="p-1 xl:p-2 border border-1 border-black text-center">
+                                  {Data[count - 1].pernyataan_4}
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_4"
+                                      value={Data[count - 1].head_1}
+                                      onChange={(e) => setCond4(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                                <td className="p-1 xl:p-2 border border-1 border-black">
+                                  <div className="flex justify-center">
+                                    <input
+                                      type="radio"
+                                      name="pernyataan_4"
+                                      value={Data[count - 1].head_2}
+                                      onChange={(e) => setCond4(e.target.value)}
+                                    />
+                                  </div>
+                                </td>
+                              </tr>
+                            </tbody>
+                          </table>
+                          <div className="flex justify-center">
+                            <button
+                              className="py-1 px-5 border w-52 border-1 border-white rounded-lg bg-red-500 mt-4 text-white"
+                              onClick={() =>
+                                handleSelect(
+                                  `${cond1},${cond2},${cond3},${cond4}`
+                                )
+                              }
+                            >
+                              Simpan
+                            </button>
+                          </div>
+                        </>
+                      ) : (
+                        <>
+                          {Data[count - 1].pilihan_a_gambar ? (
+                            <div className="columns-1 xl:flex xl:justify-around">
+                              <div>
+                                <strong>A.</strong>
+                                <img
+                                  src={Data[count - 1].pilihan_a_gambar}
+                                  alt=""
+                                  className="w-10/12"
+                                  onClick={() => handleSelect("A")}
+                                />
+                              </div>
+                              <div>
+                                <strong>B.</strong>
+                                <img
+                                  src={Data[count - 1].pilihan_b_gambar}
+                                  alt=""
+                                  className="w-10/12"
+                                  onClick={() => handleSelect("B")}
+                                />
+                              </div>
+                              <div>
+                                <strong>C.</strong>
+                                <img
+                                  src={Data[count - 1].pilihan_c_gambar}
+                                  alt=""
+                                  className="w-10/12"
+                                  onClick={() => handleSelect("C")}
+                                />
+                              </div>
+                              <div>
+                                <strong>D.</strong>
+                                <img
+                                  src={Data[count - 1].pilihan_d_gambar}
+                                  alt=""
+                                  className="w-10/12"
+                                  onClick={() => handleSelect("D")}
+                                />
+                              </div>
+                              <div>
+                                <strong>E.</strong>
+                                <img
+                                  src={Data[count - 1].pilihan_e_gambar}
+                                  alt=""
+                                  className="w-10/12"
+                                  onClick={() => handleSelect("E")}
+                                />
+                              </div>
+                            </div>
+                          ) : (
+                            <div className="pb-10">
+                              <div
+                                className="w-full p-2 mb-2 border border-2 rounded-lg hover:bg-blue-400 cursor-pointer"
+                                style={{ fontSize: "12px" }}
+                                onClick={() => handleSelect("A")}
+                              >
+                                <strong>A.</strong>{" "}
+                                <Latex>{Data[count - 1].pilihan_a_text}</Latex>
+                              </div>
+                              <div
+                                className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
+                                style={{ fontSize: "12px" }}
+                                onClick={() => handleSelect("B")}
+                              >
+                                <strong>B.</strong>{" "}
+                                <Latex>{Data[count - 1].pilihan_b_text}</Latex>
+                              </div>
+                              <div
+                                className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
+                                style={{ fontSize: "12px" }}
+                                onClick={() => handleSelect("C")}
+                              >
+                                <strong>C.</strong>{" "}
+                                <Latex>{Data[count - 1].pilihan_c_text}</Latex>
+                              </div>
+                              <div
+                                className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
+                                style={{ fontSize: "12px" }}
+                                onClick={() => handleSelect("D")}
+                              >
+                                <strong>D.</strong>{" "}
+                                <Latex>{Data[count - 1].pilihan_d_text}</Latex>
+                              </div>
+                              <div
+                                className="w-full p-2 mb-2 border border-2 rounded-lg rounded-lg hover:bg-blue-400 cursor-pointer"
+                                style={{ fontSize: "12px" }}
+                                onClick={() => handleSelect("E")}
+                              >
+                                <strong>E.</strong>{" "}
+                                <Latex>{Data[count - 1].pilihan_e_text}</Latex>
+                              </div>
+                            </div>
+                          )}
+                        </>
+                      )}
+                    </>
                   )}
+                  <div>
+                    <h1 className="text-bold text-white">{`Jawaban: ${
+                      no[count - 1].select
+                    }`}</h1>
+                  </div>
                   <div className="flex justify-end mt-5">
                     <div
                       className="p-2 bg-blue-300 rounded-full text-orange-600 hover:cursor-pointer hover:scale-105 hover:drop-shadow-xl"
@@ -435,7 +604,7 @@ const TestPage = () => {
                 </h1>
               </div>
 
-              <div className="columns-5 xl:columns-5 bg-white p-2 drop-shadow-xl w-full overflow-y-scroll">
+              <div className=" bg-white p-2 columns-3 drop-shadow-xl w-full">
                 {no.map((value) => (
                   <div
                     style={{ fontSize: "12px" }}
