@@ -92,7 +92,6 @@ const TestPage = () => {
   };
 
   const handleSelect = (select) => {
-    console.log(select, "ini");
     Change(select);
     setCount(count + 1);
     if (count > Data.length - 1) {
@@ -512,7 +511,7 @@ const TestPage = () => {
                       )}
                     </>
                   )}
-                  <div>
+                  <div className="mt-5">
                     <h1 className="text-bold text-white">{`Jawaban: ${
                       no[count - 1].select
                     }`}</h1>
