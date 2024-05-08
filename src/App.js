@@ -7,6 +7,7 @@ import NoCatatan from "./Pages/NoCatatan";
 import NoLink from "./Pages/NoLink";
 import InfoTO from "./Component/InfoTO";
 import TestQuiz from "./Component/TestQuiz";
+import MenuPage from "./Pages/MenuPage";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
           <Route path="/no-link" element={<NoLink />} />
           <Route path="/hasil-test" element={<HasilTest />} />
           <Route path="/test-quiz" element={<TestQuiz />} />
+          <Route path="/menu-deep" element={<MenuPage />} />
         </Routes>
       </BrowserRouter>
     </div>

@@ -1,4 +1,6 @@
 exports.ENPOINTS = {
+  MERGETO:
+    "https://script.google.com/macros/s/AKfycbzXWw9bM1Ba-0rYo6yZyXQNpgf5246lDXIwWW1Utq6vekZ4Dp6V3z6EJrF7mM2lV5up/exec",
   PU: "https://script.google.com/macros/s/AKfycbxn4YQYuoNO3zhVQoYti-2NMDTsc5SZ8044-eyRQwc8mK_a6lJZcSByA7gRR10yh6HqAQ/exec",
   PM: "https://script.google.com/macros/s/AKfycbwGIm3g5Zir1j7A5_yOHkNJCESU9SM6OxIFe8GqfUyi6RSLriLNYrgbN-MLok4Ag7FwyA/exec",
   PK: "https://script.google.com/macros/s/AKfycbz-9NEk0q5KMWj79GLVJ90vbBdLq8HiGsowDJ00eejPm2z_90xHbk35YiQ7NubrUOaUYQ/exec",

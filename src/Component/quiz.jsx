@@ -21,8 +21,8 @@ const Quiz = () => {
       <div className="columns-7 justify-center w-full bg-blue-100 p-4 rounded-lg">
         {Mapel.map((value) => (
           <div key={value.id} onClick={() => handleSelect(value)}>
-            <div className="bg-white rounded-lg xl:rounded-lg flex justify-center text-center text-sm p-2 mb-3">
-              <img src={value.picture} className="w-20" />
+            <div className="bg-blue-300 rounded-lg xl:rounded-lg flex justify-center text-center text-sm p-1 mb-3">
+              <img src={value.picture} className="w-32" />
             </div>
             <p
               className=" text-center text-blue-900 font-semibold"
