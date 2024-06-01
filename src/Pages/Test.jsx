@@ -8,8 +8,6 @@ import { ENPOINTS } from "../DataStatics/endpoints";
 const TestPage = () => {
   const location = useLocation();
 
-  console.log(location.state, "ini");
-
   const navigate = useNavigate();
   const timeout = location.state.select;
   const [Data, setData] = useState("");
