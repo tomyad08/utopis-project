@@ -8,6 +8,8 @@ import { ENPOINTS } from "../DataStatics/endpoints";
 const TestPage = () => {
   const location = useLocation();
 
+  console.log(location.state, "ini");
+
   const navigate = useNavigate();
   const timeout = location.state.select;
   const [Data, setData] = useState("");
@@ -23,16 +25,26 @@ const TestPage = () => {
   const [cond4, setCond4] = useState("");
   const [isian, setIsian] = useState("");
 
-  const getData = async (data) => {
+  const getNo = (nodata) => {
     let setNumber = [];
-    await data.map((value) => {
-      setNumber.push({
-        kode_soal: value.kode_soal,
-        no_soal: value.no_soal,
-        select: "",
-      });
+
+    setNumber.push({
+      kode_soal: nodata.kode_soal,
+      no_soal: nodata.no_soal,
+      select: "",
     });
+
     setNo(setNumber);
+  };
+
+  const getData = async (data) => {
+    const y = data.filter((value) => {
+      if (value.kode_soal === location.state.subtest) {
+        getNo(value);
+        return value;
+      }
+    });
+    setData(y);
   };
   useEffect(() => {
     if (!location.state) {
@@ -43,7 +55,6 @@ const TestPage = () => {
       })
         .then((res) => res.json())
         .then((data) => {
-          setData(data);
           getData(data);
         })
         .catch(() => {

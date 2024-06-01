@@ -6,10 +6,11 @@ const MenuDeep = () => {
   const location = useLocation();
   const handleSelect = (value) => {
     const data = {
-      datasiswa: location.state,
-      linkto: value.link,
+      datasiswa: location.state.datasiswa,
+      linkto: location.state.linkto,
       select: value.time,
       jumlah: value.jumlah,
+      subtest: value.mapel,
     };
     navigate("/test", {
       state: data,
