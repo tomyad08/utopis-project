@@ -1,11 +1,11 @@
 const NoCatatan = () => {
   return (
-    <div className="flex justify-center h-screen items-center">
+    <div className="flex justify-center h-screen items-center bg-blue-100">
       <div className="w-4/5 xl:w-4/12">
         <div className="flex justify-center">
-          <img src="./berang.PNG" alt="" className="w-full xl:w-8/12" />
+          <img src="./apologize.png" alt="" className="w-3/5 xl:w-8/12" />
         </div>
-        <h1 className="text-xl font-semibold text-center">
+        <h1 className="text-md font-semibold text-center">
           Mohon maap nih cuy, belum ada catatan kelas. Silahkan hubungi Kak Mila
           dulu ya.
         </h1>

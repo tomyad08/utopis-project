@@ -3,7 +3,7 @@ const NoLink = () => {
     <div className="flex justify-center h-screen items-center">
       <div className="w-4/5 xl:w-4/12">
         <div className="flex justify-center">
-          <img src="./berang.PNG" alt="" className="w-full xl:w-8/12" />
+          <img src="./apologize.jpg" alt="" className="w-full xl:w-8/12" />
         </div>
         <h1 className="text-xl font-semibold text-center">
           Mohon maap nih cuy, belum ada akses link testnya. Silahkan hubungi Kak
