@@ -8,6 +8,7 @@ import NoLink from "./Pages/NoLink";
 import InfoTO from "./Component/InfoTO";
 import TestQuiz from "./Component/TestQuiz";
 import MenuPage from "./Pages/MenuPage";
+import SubmitST30Pages from "./Pages/SubmitST30Pages";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/hasil-test" element={<HasilTest />} />
           <Route path="/test-quiz" element={<TestQuiz />} />
           <Route path="/menu-deep" element={<MenuPage />} />
+          <Route path="/submit-st30" element={<SubmitST30Pages />} />
         </Routes>
       </BrowserRouter>
     </div>

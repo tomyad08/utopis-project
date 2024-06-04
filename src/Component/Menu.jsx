@@ -77,12 +77,12 @@ const Menu = () => {
               Test ST-30
             </button>
           )}
-          <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php">
+          <a href="https://forms.gle/5xFyAHNNTgdTcrVJ9">
             <button
               className=" py-2 px-4 text-center text-white rounded-r-lg bg-red-500 mt-2"
               style={{ fontSize: "10px" }}
             >
-              Analisis ST-30
+              Submit file ST-30
             </button>
           </a>
         </div>
