@@ -1,15 +1,15 @@
 exports.ENPOINTS = {
   MERGETO:
-    "https://script.google.com/macros/s/AKfycbzXWw9bM1Ba-0rYo6yZyXQNpgf5246lDXIwWW1Utq6vekZ4Dp6V3z6EJrF7mM2lV5up/exec",
-  PU: "https://script.google.com/macros/s/AKfycbxn4YQYuoNO3zhVQoYti-2NMDTsc5SZ8044-eyRQwc8mK_a6lJZcSByA7gRR10yh6HqAQ/exec",
-  PM: "https://script.google.com/macros/s/AKfycbwGIm3g5Zir1j7A5_yOHkNJCESU9SM6OxIFe8GqfUyi6RSLriLNYrgbN-MLok4Ag7FwyA/exec",
-  PK: "https://script.google.com/macros/s/AKfycbz-9NEk0q5KMWj79GLVJ90vbBdLq8HiGsowDJ00eejPm2z_90xHbk35YiQ7NubrUOaUYQ/exec",
-  PPU: "https://script.google.com/macros/s/AKfycbzRJOh0rwD5bqC6vwHgVm5coKvqQDB873ncIwmr42mbc9Q3NZRO1afJGzlbz2QQVZar/exec",
-  PBM: "https://script.google.com/macros/s/AKfycbyqU7A8QFpXKfewSK4OfMozMxXtcI5GCvoffbL9WXC75FWL8-J15DMQiV6tVNfXGpSF/exec",
+    "https://script.google.com/macros/s/AKfycbyNFVOWWi2WuRCROD1P0KX2WIS0xo3XEyIFdDCIx8oJLoi0638fyWhg--ORICy_j0Rp/exec",
+  PU: "https://script.google.com/macros/s/AKfycbyeYCmzsyIcD9l5vureKTAELbrc6pF4LLyZPcbThzSXqjXdpjIDFKngb6JVK0Go83eL/exec",
+  PM: "https://script.google.com/macros/s/AKfycbwOKUuRrMAXH0S-qG-MRtmsLG9QmTLr-GD6eqMXz6a6vD1Uhzb9MZzQeUyElkAQ7bFq2w/exec",
+  PK: "https://script.google.com/macros/s/AKfycbyjLAqGOkntCU-9VSsv-LOo4iPjyF3YwR13nCo8i3OKan5AIMLuJQm1RaaSq5ZL9AzEvg/exec",
+  PPU: "https://script.google.com/macros/s/AKfycbxeBkh5tDea2WSi2F3LfM4o408NgBV585seOhnY3mKO6CqR4Sj11EtLDrZCClKxHuq9kA/exec",
+  PBM: "https://script.google.com/macros/s/AKfycby5f00USFR2q2T9kh4wmmdyOn1pFzAnhgTYTrPzNhNLDZ5iK018KdvcOyF0VJOY3RKrMg/exec",
   LBIND:
-    "https://script.google.com/macros/s/AKfycbzJf_w7m_xCq9mQyM1VNSSLr3MjtHQGBUNlryshLJ8kHLorRdYhhyQU6bCYkaYvXjJ57w/exec",
+    "https://script.google.com/macros/s/AKfycbzD4Cbi_gIHhE_tdnXOz38xYAym_iVignRClsRXCcK1xRoHkoaBEkQHEzWhLRpv81-K6w/exec",
   LBING:
-    "https://script.google.com/macros/s/AKfycbyEDrQa-Y_wkKnUwMX085kho5MJPPcRD77p4paLRr-S1CebdsTpj-PzdcfmYBDkbpP4/exec",
+    "https://script.google.com/macros/s/AKfycbxUHfmwsoVi6Upi4mCHtpINscHoJKN6zIiP5QdWZ3wT0slKgvV3Aa0RvOm6QLxXt5sG/exec",
   LOGIN:
     "https://script.google.com/macros/s/AKfycby5jWhuXD-ECtZ6W30ZrRInX4D_iNmYse0uTd9R1PZiEQVnKJcc49W_0QUrKViyF7LW3Q/exec",
   REPORT:
