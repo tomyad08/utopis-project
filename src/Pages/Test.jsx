@@ -23,6 +23,8 @@ const TestPage = () => {
   const [cond4, setCond4] = useState("");
   const [isian, setIsian] = useState("");
 
+  console.log(Data, "ini");
+
   const getNo = (nodata) => {
     let setNumber = [];
 

@@ -10,7 +10,7 @@ const MenuDeep = () => {
       linkto: location.state.linkto,
       select: value.time,
       jumlah: value.jumlah,
-      subtest: value.mapel,
+      subtest: value.inisial,
     };
     navigate("/test", {
       state: data,
