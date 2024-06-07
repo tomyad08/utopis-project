@@ -23,27 +23,19 @@ const TestPage = () => {
   const [cond4, setCond4] = useState("");
   const [isian, setIsian] = useState("");
 
-  console.log(Data, "ini");
-
-  const getNo = (nodata) => {
-    let setNumber = [];
-
-    setNumber.push({
-      kode_soal: nodata.kode_soal,
-      no_soal: nodata.no_soal,
-      select: "",
-    });
-
-    setNo(setNumber);
-  };
-
   const getData = async (data) => {
-    const y = data.filter((value) => {
-      if (value.kode_soal === location.state.subtest) {
-        getNo(value);
+    let setNumber = [];
+    const y = await data.filter((value) => {
+      if (value.kode_soal == location.state.subtest) {
+        setNumber.push({
+          kode_soal: value.kode_soal,
+          no_soal: value.no_soal,
+          select: "",
+        });
         return value;
       }
     });
+    setNo(setNumber);
     setData(y);
   };
   useEffect(() => {
@@ -138,7 +130,7 @@ const TestPage = () => {
       datasiswa: location.state.datasiswa,
     };
 
-    fetch(ENPOINTS.REPORT, {
+    fetch(location.state.datasiswa.link_datasiswa, {
       method: "POST",
       body: formData,
     })

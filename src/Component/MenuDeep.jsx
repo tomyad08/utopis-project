@@ -16,6 +16,7 @@ const MenuDeep = () => {
       state: data,
     });
   };
+
   return (
     <div>
       <div className="px-5 pb-2">
