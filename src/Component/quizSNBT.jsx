@@ -31,7 +31,7 @@ const Quiz = () => {
 
   return (
     <div className="px-5 pb-2">
-      <h1 className="text-sm font-semibold text-blue-700">Quiz</h1>
+      <h1 className="text-sm font-semibold text-blue-700">Quiz SNBT</h1>
       <div className="columns-7 justify-center w-full bg-blue-100 p-4 rounded-lg">
         {datas ? (
           <>
