@@ -31,14 +31,14 @@ exports.Mapel = [
     time: 900,
     jumlah: 20,
     picture: "./general_knowledge.jpg",
-    mapel: "Pengetahuan & Pemahaman Umum",
+    mapel: "Pengetahuan dan Pemahaman Umum",
   },
   {
     id: 5,
     inisial: "PBM",
     time: 1500,
     jumlah: 20,
-    mapel: "Pemahaman Bacaan & Menulis",
+    mapel: "Pemahaman Bacaan dan Menulis",
     picture: "./reading_and_writing_knowledge.jpg",
   },
   {

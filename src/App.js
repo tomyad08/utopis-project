@@ -9,8 +9,8 @@ import InfoTO from "./Component/InfoTO";
 import TestQuiz from "./Component/TestQuiz";
 import MenuPage from "./Pages/MenuPage";
 import SubmitST30Pages from "./Pages/SubmitST30Pages";
-import ListQuiz from "./Pages/Listquiz";
-import ListQuizCPNS from "./Pages/Listquiz";
+import ListQuizSNBT from "./Pages/Listquiz";
+import ListQuizCPNS from "./Pages/ListQuizCPNS";
 
 function App() {
   return (
@@ -28,6 +28,7 @@ function App() {
           <Route path="/menu-deep" element={<MenuPage />} />
           <Route path="/submit-st30" element={<SubmitST30Pages />} />
           <Route path="/list-cpns" element={<ListQuizCPNS />} />
+          <Route path="/list-snbt" element={<ListQuizSNBT />} />
         </Routes>
       </BrowserRouter>
     </div>

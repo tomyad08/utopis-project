@@ -1,22 +1,21 @@
 import { useEffect, useState } from "react";
-import { MenuCPNS } from "../DataStatics/MenuCPNS";
 import { useLocation } from "react-router-dom";
 import { MenuSNBT } from "../DataStatics/MenuSNBT";
+import { MenuCPNS } from "../DataStatics/MenuCPNS";
 
-const ListQuizSNBT = () => {
+const ListQuizCPNS = () => {
   const [list, setList] = useState("");
   const [datas, setDatas] = useState("");
   const location = useLocation();
 
   useEffect(() => {
-    const x = MenuSNBT.filter((value) => {
+    const x = MenuCPNS.filter((value) => {
       if (value.group === location.state.select) {
         return value;
       }
     });
     setList(x);
   }, []);
-
   return (
     <div className=" bg-black flex justify-center items-center h-screen">
       <div className="w-11/12">
@@ -31,7 +30,7 @@ const ListQuizSNBT = () => {
           </div>
           <div className="p-5 bg-blue-200 rounded-xl">
             {list ? (
-              <div>
+              <>
                 {list.map((value) => (
                   <div
                     key={value.id}
@@ -40,7 +39,7 @@ const ListQuizSNBT = () => {
                     <h1>{value.subgroup}</h1>
                   </div>
                 ))}
-              </div>
+              </>
             ) : (
               <p>Loading ...</p>
             )}
@@ -50,4 +49,4 @@ const ListQuizSNBT = () => {
     </div>
   );
 };
-export default ListQuizSNBT;
+export default ListQuizCPNS;
