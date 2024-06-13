@@ -1,7 +1,6 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ENPOINTS } from "../DataStatics/endpoints";
-import { Mapel } from "../DataStatics/Menu";
 
 const QuizCPNS = () => {
   const navigate = useNavigate();

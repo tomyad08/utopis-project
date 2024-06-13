@@ -60,10 +60,11 @@ const Menu = () => {
         </a>
         <div>
           {location.state.link_st30 ? (
-            <a href={location.state.link_st30}>
+            <a>
               <button
                 className="py-2 px-4 text-center text-white rounded-l-lg bg-blue-800 mt-2"
                 style={{ fontSize: "10px" }}
+                onClick={() => navigate("/test-minat")}
               >
                 Test ST-30
               </button>

@@ -1,4 +1,5 @@
 import FormLogin from "../Component/LoginForm";
+import TestMinatBakat from "../Component/TestMinatBakat";
 
 const LoginPage = () => {
   return (
@@ -17,6 +18,7 @@ const LoginPage = () => {
           yang tepat.
         </p>
         <FormLogin />
+
         <div className="w-52 h-52 rounded-full bg-blue-900 fixed bottom-5 right-10"></div>
       </div>
     </div>

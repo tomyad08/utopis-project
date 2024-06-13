@@ -11,6 +11,7 @@ import MenuPage from "./Pages/MenuPage";
 import SubmitST30Pages from "./Pages/SubmitST30Pages";
 import ListQuizSNBT from "./Pages/Listquiz";
 import ListQuizCPNS from "./Pages/ListQuizCPNS";
+import TestMINATPage from "./Pages/TestMINAT";
 
 function App() {
   return (
@@ -29,6 +30,7 @@ function App() {
           <Route path="/submit-st30" element={<SubmitST30Pages />} />
           <Route path="/list-cpns" element={<ListQuizCPNS />} />
           <Route path="/list-snbt" element={<ListQuizSNBT />} />
+          <Route path="/test-minat" element={<TestMINATPage />} />
         </Routes>
       </BrowserRouter>
     </div>
