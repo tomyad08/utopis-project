@@ -12,7 +12,8 @@ import SubmitST30Pages from "./Pages/SubmitST30Pages";
 import ListQuizSNBT from "./Pages/Listquiz";
 import ListQuizCPNS from "./Pages/ListQuizCPNS";
 import TestMINATPage from "./Pages/TestMINAT";
-import AnalisisST30Page from "./Pages/AnalisisST30Page";
+import AnalisisST30 from "./Component/AnalisisST30";
+import AnalisisPage from "./Pages/AnalisisPage";
 
 function App() {
   return (
@@ -32,7 +33,7 @@ function App() {
           <Route path="/list-cpns" element={<ListQuizCPNS />} />
           <Route path="/list-snbt" element={<ListQuizSNBT />} />
           <Route path="/test-minat" element={<TestMINATPage />} />
-          <Route path="/hasil-test-st30" element={<AnalisisST30Page />} />
+          <Route path="/hasil-test-st30" element={<AnalisisPage />} />
         </Routes>
       </BrowserRouter>
     </div>
