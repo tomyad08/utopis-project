@@ -1,8 +1,146 @@
+import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { ENPOINTS } from "../DataStatics/endpoints";
 
 const AnalisisST30 = () => {
   const location = useLocation();
-  console.log(location.state);
+  const [Data, setData] = useState("");
+  const [bakatValue, setBakatValue] = useState("");
+
+  let bakatValues = {
+    Networking: 0,
+    Headman: 0,
+    GeneratingIdea: 0,
+    Serving: 0,
+    Technical: 0,
+    Thinking: 0,
+    Reasoning: 0,
+    Elementer: 0,
+  };
+
+  const levelChanges = {
+    "PALING TIDAK DISUKAI": -25,
+    "TIDAK DISUKAI": -13,
+    DISUKAI: 13,
+    "PALING DISUKAI": 25,
+  };
+
+  const specialCases = {
+    Headman: {
+      "PALING TIDAK DISUKAI": -20,
+      "TIDAK DISUKAI": -10,
+      DISUKAI: 10,
+      "PALING DISUKAI": 20,
+    },
+    Serving: {
+      "PALING TIDAK DISUKAI": -50,
+      "TIDAK DISUKAI": -25,
+      DISUKAI: 25,
+      "PALING DISUKAI": 50,
+    },
+    GeneratingIdea: {
+      "PALING TIDAK DISUKAI": -17,
+      "TIDAK DISUKAI": -9,
+      DISUKAI: 9,
+      "PALING DISUKAI": 17,
+    },
+    Technical: {
+      "PALING TIDAK DISUKAI": -20,
+      "TIDAK DISUKAI": -10,
+      DISUKAI: 20,
+      "PALING DISUKAI": 20,
+    },
+    Elementer: {
+      "PALING TIDAK DISUKAI": -34,
+      "TIDAK DISUKAI": -17,
+      DISUKAI: 17,
+      "PALING DISUKAI": 34,
+    },
+    Reasoning: {
+      "PALING TIDAK DISUKAI": -34,
+      "TIDAK DISUKAI": -17,
+      DISUKAI: 17,
+      "PALING DISUKAI": 34,
+    },
+    Thinking: {
+      "PALING TIDAK DISUKAI": -50,
+      "TIDAK DISUKAI": -25,
+      DISUKAI: 25,
+      "PALING DISUKAI": 50,
+    },
+  };
+
+  const Persentase = (bakat, level) => {
+    if (!bakatValues.hasOwnProperty(bakat)) {
+      console.error(`Unknown bakat: ${bakat}`);
+      return;
+    }
+    let change = levelChanges[level];
+    if (specialCases[bakat] && specialCases[bakat][level] !== undefined) {
+      change = specialCases[bakat][level];
+    }
+    bakatValues[bakat] += change / 2;
+    setBakatValue(bakatValues);
+  };
+  console.log(bakatValue);
+
+  const handleFilter = (x) => {
+    let container = [];
+    for (let i = 0; i < x.length; i++) {
+      for (let j = 0; j < location.state.length; j++) {
+        if (location.state[j].minat === x[i].minat) {
+          Persentase(x[i].group, location.state[j].head);
+          container.push(x[i]);
+        }
+      }
+    }
+    setData(container);
+  };
+
+  useEffect(() => {
+    fetch(ENPOINTS.TEST_MINAT_BAKAT, {
+      method: "GET",
+    })
+      .then((res) => res.json())
+      .then((data) => {
+        handleFilter(data);
+      });
+  }, []);
+
+  const RelativeBakat = [
+    {
+      id: 1,
+      name: "Networking",
+    },
+    {
+      id: 2,
+      name: "Headman",
+    },
+    {
+      id: 3,
+      name: "Serving",
+    },
+    {
+      id: 4,
+      name: "GeneratingIdea",
+    },
+    {
+      id: 5,
+      name: "Technical",
+    },
+    {
+      id: 6,
+      name: "Elementer",
+    },
+    {
+      id: 7,
+      name: "Reasoning",
+    },
+    {
+      id: 8,
+      name: "Thinking",
+    },
+  ];
   return (
     <div>
       <h1 className="text-center text-blue-700 font-semibold text-3xl">
@@ -13,19 +151,36 @@ const AnalisisST30 = () => {
         bertujuan untuk membantu individu menemukan peran yang paling produktif
         dan sesuai dengan potensi mereka.
       </p>
+      <div className="flex justify-center">
+        <table>
+          <thead>
+            <tr className="border-b-2 p-2 border-blue-300 text-center">
+              <th className="p-2">Bakat</th>
+              <th className="p-2">Presentase</th>
+            </tr>
+          </thead>
+          <tbody>
+            {RelativeBakat.map((value) => (
+              <tr className="border-b-2 p-2 border-blue-300 text-center">
+                <td className="p-1 text-sm">{value.name}</td>
+                <td className="p-1 text-sm">{bakatValue[value.name]}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
       <div className="mt-5">
         <h1 className="text-blue-700 text-sm border-b-2 border-blue-300">
           Peran Paling Produktif
         </h1>
         <div className="columns-2 mt-3">
           {location.state
-            .filter((value) => {
-              if (value.head === "PALING DISUKAI") {
-                return value;
-              }
-            })
-            .map((value) => (
-              <div className="p-1 bg-blue-700 text-white font-semibold text-center text-sm mb-2 rounded-lg">
+            .filter((value) => value.head === "PALING DISUKAI")
+            .map((value, index) => (
+              <div
+                key={index}
+                className="p-1 bg-blue-700 text-white font-semibold text-center text-sm mb-2 rounded-lg"
+              >
                 {value.minat}
               </div>
             ))}
@@ -37,13 +192,12 @@ const AnalisisST30 = () => {
         </h1>
         <div className="columns-2 mt-3">
           {location.state
-            .filter((value) => {
-              if (value.head === "PALING TIDAK DISUKAI") {
-                return value;
-              }
-            })
-            .map((value) => (
-              <div className="p-1 bg-blue-700 text-white font-semibold text-center text-sm mb-2 rounded-lg">
+            .filter((value) => value.head === "PALING TIDAK DISUKAI")
+            .map((value, index) => (
+              <div
+                key={index}
+                className="p-1 bg-blue-700 text-white font-semibold text-center text-sm mb-2 rounded-lg"
+              >
                 {value.minat}
               </div>
             ))}
