@@ -11,11 +11,20 @@ const Result = () => {
   const location = useLocation();
 
   const colorMap = {
-    "PALING DISUKAI": { color: "red-700", strong: "Very-Strong", value: 5 },
-    DISUKAI: { color: "amber-300", strong: "Middle-Strong", value: 3 },
-    "TIDAK DISUKAI": { color: "slate-100", strong: "Middle-Weak", value: 0.3 },
+    "PALING DISUKAI": {
+      color: "PALING DISUKAI",
+      strong: "Very-Strong",
+      value: 5,
+    },
+    DISUKAI: { color: "DISUKAI", strong: "Middle-Strong", value: 3 },
+    NETRAL: { color: "NETRAL", strong: "NETRAL", value: 1 },
+    "TIDAK DISUKAI": {
+      color: "TIDAK DISUKAI",
+      strong: "Middle-Weak",
+      value: 0.3,
+    },
     "PALING TIDAK DISUKAI": {
-      color: "slate-100",
+      color: "PALING TIDAK DISUKAI",
       strong: "Very-Weak",
       value: 0.2,
     },
@@ -35,7 +44,7 @@ const Result = () => {
 
   const ListNumber = (values) => {
     const rumpunTotals = values.reduce((totals, item) => {
-      const nilaiWarna = colorMap[item.color.toUpperCase()]?.value || 0;
+      const nilaiWarna = colorMap[item.color]?.value || 0;
       totals[item.rumpun] = (totals[item.rumpun] || 1) * nilaiWarna;
       return totals;
     }, {});
@@ -60,8 +69,7 @@ const Result = () => {
               id: count,
               rumpun: d.rumpun,
               branding: dt.nilai,
-              color: dt.color.split("-")[0],
-              colorbg: `bg-${dt.color}`,
+              color: dt.color,
               strong: dt.strong,
             });
           }
@@ -70,7 +78,7 @@ const Result = () => {
 
       const sortedRes = res.sort((a, b) => a.rumpun.localeCompare(b.rumpun));
       setDatas(sortedRes);
-      ListNumber(res);
+      ListNumber(sortedRes);
     }
   };
 
@@ -157,7 +165,7 @@ const Result = () => {
           </h1>
           {filteredDatas.map((value) => (
             <div
-              className={`my-2 flex justify-between ${value.colorbg} text-blue-600 font-semibold p-2 rounded-lg`}
+              className={`my-2 flex justify-between text-blue-600 font-semibold p-2 rounded-lg`}
               key={value.id}
             >
               <div>{value.branding}</div>
