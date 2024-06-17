@@ -82,7 +82,6 @@ const AnalisisST30 = () => {
     bakatValues[bakat] += change / 2;
     setBakatValue(bakatValues);
   };
-  console.log(bakatValue);
 
   const handleFilter = (x) => {
     let container = [];
@@ -111,34 +110,50 @@ const AnalisisST30 = () => {
     {
       id: 1,
       name: "Networking",
+      description:
+        "Aktivitas berinteraksi dengan orang lain dalam rangka bekerja sama, membimbing, melatih, atau mewakili.",
     },
     {
       id: 2,
       name: "Headman",
+      description:
+        "Aktivitas berinteraksi dengan orang lain dalam rangka mengendalikan, mempengaruhi, atau mengawasi.",
     },
     {
       id: 3,
       name: "Serving",
+      description:
+        "Aktivitas berinteraksi dengan orang lain dalam rangka merawat, melayani, atau menolong.",
     },
     {
       id: 4,
       name: "GeneratingIdea",
+      description:
+        "Aktivitas individual menggunakan pemikiran terkait intuisi, ide, dan kreativitas.",
     },
     {
       id: 5,
       name: "Technical",
+      description:
+        "Aktivitas individual yang tidak banyak menggunakan olah pikir, namun memerlukan ketekunan, kegigihan, dan biasanya berada di luar ruangan.",
     },
     {
       id: 6,
       name: "Elementer",
+      description:
+        "Aktivitas individual yang tidak banyak menggunakan olah pikir, namun memerlukan ketekunan, kegigihan, dan biasanya berada di luar ruangan.",
     },
     {
       id: 7,
       name: "Reasoning",
+      description:
+        "Aktivitas individual yang menggunakan logika untuk mencari atau membuktikan sesuatu",
     },
     {
       id: 8,
       name: "Thinking",
+      description:
+        "Aktivitas individual menggunakan logika, fakta, atau terkait analisa terhadap angka maupun data.",
     },
   ];
   return (
@@ -146,30 +161,50 @@ const AnalisisST30 = () => {
       <h1 className="text-center text-blue-700 font-semibold text-3xl">
         Analisis Stength Typology 30
       </h1>
-      <p className="text-justify mt-5" style={{ fontSize: "12px" }}>
+      <p className="text-justify my-5" style={{ fontSize: "12px" }}>
         Strength Typologi 30 adalah sebuah metode pemetaan minat dan bakat yang
         bertujuan untuk membantu individu menemukan peran yang paling produktif
         dan sesuai dengan potensi mereka.
       </p>
-      <div className="flex justify-center">
+      <div>
         <table>
           <thead>
             <tr className="border-b-2 p-2 border-blue-300 text-center">
-              <th className="p-2">Bakat</th>
-              <th className="p-2">Presentase</th>
+              <th className="p-1 " style={{ fontSize: "10px" }}>
+                Aktivitas
+              </th>
+              <th className="p-1 " style={{ fontSize: "10px" }}>
+                Presentase
+              </th>
+              <th className="p-1 " style={{ fontSize: "10px" }}>
+                Deskripsi
+              </th>
             </tr>
           </thead>
           <tbody>
             {RelativeBakat.map((value) => (
-              <tr className="border-b-2 p-2 border-blue-300 text-center">
-                <td className="p-1 text-sm">{value.name}</td>
-                <td className="p-1 text-sm">{bakatValue[value.name]}</td>
+              <tr className="border-b-2 border-blue-300 text-center">
+                <td className="p-1" style={{ fontSize: "10px" }}>
+                  {value.name}
+                </td>
+                <td className="p-1" style={{ fontSize: "10px" }}>
+                  {bakatValue[value.name]}
+                </td>
+                <td className="p-1" style={{ fontSize: "10px" }}>
+                  {value.description}
+                </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
-      <div className="mt-5">
+      <div>
+        <h1 className="text-justify mt-5" style={{ fontSize: "12px" }}>
+          Berikut adalah data berdasarkan pengelompokkan peran yang paling
+          produktif dan paling tidak produktif.
+        </h1>
+      </div>
+      <div className="my-5">
         <h1 className="text-blue-700 text-sm border-b-2 border-blue-300">
           Peran Paling Produktif
         </h1>
