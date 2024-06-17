@@ -2,7 +2,7 @@ import AnalisisST30 from "../Component/AnalisisST30";
 
 const AnalisisPage = () => {
   return (
-    <div className="flex justify-center p-5">
+    <div className="flex justify-center p-5 bg-blue-200">
       <div className="w-11/12">
         <AnalisisST30 />
       </div>

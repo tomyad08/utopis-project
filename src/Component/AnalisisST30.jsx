@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ENPOINTS } from "../DataStatics/endpoints";
+import Result from "./RecomendationST30";
 
 const AnalisisST30 = () => {
   const location = useLocation();
@@ -158,7 +159,7 @@ const AnalisisST30 = () => {
   ];
   return (
     <div>
-      <h1 className="text-center text-blue-700 font-semibold text-3xl">
+      <h1 className="text-center text-white font-semibold text-3xl p-5 bg-blue-700 rounded-xl">
         Analisis Stength Typology 30
       </h1>
       <p className="text-justify my-5" style={{ fontSize: "12px" }}>
@@ -166,6 +167,9 @@ const AnalisisST30 = () => {
         bertujuan untuk membantu individu menemukan peran yang paling produktif
         dan sesuai dengan potensi mereka.
       </p>
+      <div className="h-96 overflow-y-scroll rounded-xl mb-5">
+        <Result />
+      </div>
       <div>
         <table>
           <thead>
@@ -237,6 +241,24 @@ const AnalisisST30 = () => {
               </div>
             ))}
         </div>
+      </div>
+      <div className="mt-5">
+        {Data ? (
+          <>
+            {Data.map((value) => (
+              <div className="my-1">
+                <h1 className="text-sm font-bold text-blue-400">
+                  {value.minat}
+                </h1>
+                <p className="text-justify" style={{ fontSize: "10px" }}>
+                  {value.description}
+                </p>
+              </div>
+            ))}
+          </>
+        ) : (
+          <p>Loading ...</p>
+        )}
       </div>
     </div>
   );

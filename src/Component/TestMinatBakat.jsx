@@ -102,12 +102,12 @@ const TestMinatBakat = () => {
               )}
             </div>
           </div>
-          <div className="mt-2 bg-blue-300 p-2 rounded-lg">
+          <div className="mt-2 bg-blue-100 border-4 border border-blue-300 p-2 rounded-lg">
             {Data.map((value) => (
               <div key={value.kode}>
                 <table>
                   <tbody>
-                    <tr className="bg-blue-100">
+                    <tr className="">
                       <td className="p-3">
                         <input
                           type="checkbox"
