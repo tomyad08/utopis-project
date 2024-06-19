@@ -5,7 +5,6 @@ const SubmitST30 = () => {
   const [filename, setFilename] = useState("");
   const [imgSrc, setImgSrc] = useState("");
 
-  console.log(file);
 
   const handleSubmit = (e) => {
     e.preventDefault();
