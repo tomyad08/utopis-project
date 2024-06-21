@@ -2,41 +2,49 @@ import React, { useEffect, useRef, useState } from "react";
 
 const GamePesawat = () => {
   const [sign, setSign] = useState(0);
-  const [count, setCount] = useState(-10);
-  const [pos, setPos] = useState(0);
+  const [count, setCount] = useState(0);
   const [bullets, setBullets] = useState([]);
+  const [points, setPoints] = useState(0);
+  const [meteors, setMeteors] = useState([]);
   const rocketRef = useRef(null);
-  const meteor1Ref = useRef(null);
-  const meteor2Ref = useRef(null);
-  const meteor3Ref = useRef(null);
 
   useEffect(() => {
     const interval = setInterval(() => {
-      setCount((prevCount) => {
-        const newCount = prevCount + 2;
-        if (newCount >= 1500) {
-          setPos(Math.floor(Math.random() * 200));
-          return -10;
-        }
-        return newCount;
-      });
+      setCount((prevCount) => prevCount + 2);
     }, 20);
 
-    const rocket = rocketRef.current;
-    if (rocket) {
-      rocket.style.left = sign + "px";
-    }
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const spawnMeteor = () => {
+      const newMeteor = {
+        id: Math.random(),
+        left: Math.floor(Math.random() * (window.innerWidth - 50)),
+        top: -50,
+      };
+      setMeteors((prevMeteors) => [...prevMeteors, newMeteor]);
+    };
+
+    const meteorInterval = setInterval(spawnMeteor, 2000);
+
+    return () => clearInterval(meteorInterval);
+  }, []);
+
+  useEffect(() => {
+    const updateMeteors = () => {
+      setMeteors((prevMeteors) =>
+        prevMeteors.map((meteor) => ({
+          ...meteor,
+          top: meteor.top + 2,
+        }))
+      );
+    };
+
+    const interval = setInterval(updateMeteors, 20);
 
     return () => clearInterval(interval);
-  }, [sign, count, pos]);
-
-  const shootBullet = () => {
-    const newBullet = {
-      left: sign + 35, // posisi awal peluru sesuai dengan posisi pesawat
-      bottom: 96, // posisi awal peluru di atas pesawat
-    };
-    setBullets((prevBullets) => [...prevBullets, newBullet]);
-  };
+  }, []);
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -66,92 +74,86 @@ const GamePesawat = () => {
     };
   }, [sign]);
 
+  const shootBullet = () => {
+    const newBullet = {
+      left: sign + 35,
+      bottom: 96,
+    };
+    setBullets((prevBullets) => [...prevBullets, newBullet]);
+  };
+
+  useEffect(() => {
+    const detectCollisions = () => {
+      setBullets((prevBullets) => {
+        const newBullets = [];
+        const updatedMeteors = [];
+
+        prevBullets.forEach((bullet) => {
+          let hit = false;
+
+          meteors.forEach((meteor) => {
+            if (
+              bullet.left > meteor.left &&
+              bullet.left < meteor.left + 24 &&
+              bullet.bottom > meteor.top &&
+              bullet.bottom < meteor.top + 24
+            ) {
+              setPoints((prevPoints) => prevPoints + 1);
+              hit = true;
+            }
+          });
+
+          if (!hit) {
+            newBullets.push(bullet);
+          }
+        });
+
+        meteors.forEach((meteor) => {
+          if (
+            !bullets.some(
+              (bullet) =>
+                bullet.left > meteor.left &&
+                bullet.left < meteor.left + 24 &&
+                bullet.bottom > meteor.top &&
+                bullet.bottom < meteor.top + 24
+            )
+          ) {
+            updatedMeteors.push(meteor);
+          }
+        });
+
+        setMeteors(updatedMeteors);
+        return newBullets;
+      });
+    };
+
+    const collisionInterval = setInterval(detectCollisions, 20);
+
+    return () => clearInterval(collisionInterval);
+  }, [bullets, meteors]);
+
   return (
     <div className="flex justify-center">
       <div className="h-screen w-screen bg-black overflow-hidden relative">
         <img
           src="./ufo.png"
           alt="ufo"
-          className="w-full -top-40 animate-bounce z-20 absolute"
+          className="w-full -top-40 animate-bounce z-10 absolute"
         />
-        {/* background layar */}
-        <img
-          src="./stars.png"
-          alt="stars"
-          className="h-screen absolute"
-          // id="backgroundLayar"
-        />
-        {/* --------------- */}
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 ms-10 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count - Math.random() * 7)}px`,
-            left: `${pos * 5}px`,
-          }}
-          ref={meteor1Ref}
-        />
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 ms-10 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count - pos - Math.random() * 7)}px`,
-            left: `${pos}px`,
-          }}
-          ref={meteor2Ref}
-        />
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 right-32 ms-10 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count - pos * 8 - Math.random() * 7)}px`,
-            right: `${pos}`,
-          }}
-          ref={meteor3Ref}
-        />
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 right-0 ms-10 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count - pos * 10 - Math.random() * 7)}px`,
-            right: `${pos * 2}px`,
-          }}
-          ref={meteor1Ref}
-        />
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 left-10 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count - pos * 15 + Math.random() * 10)}px`,
-            left: `${pos * 3}`,
-          }}
-          ref={meteor1Ref}
-        />
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 left-30 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count + pos * 2 - Math.random() * 10)}px`,
-            left: `${pos * 4}`,
-          }}
-          ref={meteor1Ref}
-        />
-        <img
-          src="./meteor.png"
-          alt="meteor"
-          className="w-24 -top-10 left-24 absolute animate-pulse"
-          style={{
-            top: `${Math.floor(count - pos * 5 + Math.random() * 10)}px`,
-            left: `${pos - 10}px`,
-          }}
-          ref={meteor1Ref}
-        />
+
+        <img src="./stars.png" alt="stars" className="h-screen absolute" />
+        {meteors.map((meteor) => (
+          <img
+            key={meteor.id}
+            src="./meteor.png"
+            alt="meteor"
+            className="w-24 absolute animate-pulse"
+            style={{
+              top: `${meteor.top}px`,
+              left: `${meteor.left}px`,
+            }}
+          />
+        ))}
 
         {bullets.map((bullet, index) => (
           <div
@@ -173,6 +175,9 @@ const GamePesawat = () => {
           alt="earth"
           className="w-full bottom-0 absolute animate-pulse"
         />
+        <div className="absolute top-5 left-5 bg-white p-2 rounded-xl z-40 text-blue-800 text-2xl">
+          Points: {points}
+        </div>
       </div>
       <div
         className="absolute bottom-24 z-30 right-5"
@@ -222,14 +227,6 @@ const GamePesawat = () => {
           <circle cx="8" cy="8" r="8" />
         </svg>
       </div>
-      {/* <div className="absolute bottom-20 z-100 left-5">
-        <button
-          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-          onClick={shootBullet}
-        >
-          Shoot
-        </button>
-      </div> */}
     </div>
   );
 };
