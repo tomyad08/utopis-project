@@ -3,3 +3,16 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Varela+Round&display=swap");
+
+@keyframes scrollBackground {
+  0% {
+    transform: translateY(0);
+  }
+  100% {
+    transform: translateY(100%);
+  }
+}
+
+#backgroundLayar {
+  animation: scrollBackground 10s linear infinite;
+}

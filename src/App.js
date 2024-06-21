@@ -12,8 +12,8 @@ import SubmitST30Pages from "./Pages/SubmitST30Pages";
 import ListQuizSNBT from "./Pages/Listquiz";
 import ListQuizCPNS from "./Pages/ListQuizCPNS";
 import TestMINATPage from "./Pages/TestMINAT";
-import AnalisisST30 from "./Component/AnalisisST30";
 import AnalisisPage from "./Pages/AnalisisPage";
+import GamePesawat from "./Pages/Game";
 
 function App() {
   return (
@@ -34,6 +34,7 @@ function App() {
           <Route path="/list-snbt" element={<ListQuizSNBT />} />
           <Route path="/test-minat" element={<TestMINATPage />} />
           <Route path="/hasil-test-st30" element={<AnalisisPage />} />
+          <Route path="/game-tembakin" element={<GamePesawat />} />
         </Routes>
       </BrowserRouter>
     </div>
