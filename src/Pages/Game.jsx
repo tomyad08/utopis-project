@@ -2,63 +2,55 @@ import React, { useEffect, useRef, useState } from "react";
 
 const GamePesawat = () => {
   const [sign, setSign] = useState(0);
-  const [count, setCount] = useState(0);
   const [bullets, setBullets] = useState([]);
   const [points, setPoints] = useState(0);
   const [meteors, setMeteors] = useState([]);
   const rocketRef = useRef(null);
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCount((prevCount) => prevCount + 2);
-    }, 20);
+    const gameLoop = setInterval(() => {
+      setMeteors((prevMeteors) => {
+        return prevMeteors.map((meteor) => ({
+          ...meteor,
+          top: meteor.top + 2,
+        }));
+      });
 
-    return () => clearInterval(interval);
-  }, []);
+      setBullets((prevBullets) =>
+        prevBullets
+          .map((bullet) => ({
+            ...bullet,
+            top: window.innerHeight - bullet.bottom - 10,
+            bottom: bullet.bottom + 10,
+          }))
+          .filter((bullet) => bullet.bottom < window.innerHeight)
+      );
+
+      detectCollisions();
+      handleMeteorOutOfScreen();
+    }, 50);
+
+    return () => clearInterval(gameLoop);
+  }, [bullets, meteors]);
 
   useEffect(() => {
     const spawnMeteor = () => {
-      const newMeteor = {
-        id: Math.random(),
-        left: Math.floor(Math.random() * (window.innerWidth - 50)),
-        top: -50,
-      };
-      setMeteors((prevMeteors) => [...prevMeteors, newMeteor]);
+      setMeteors((prevMeteors) => {
+        if (prevMeteors.length < 4) {
+          const newMeteor = {
+            id: Math.random(),
+            left: Math.floor(Math.random() * (window.innerWidth - 50)),
+            top: -50,
+          };
+          return [...prevMeteors, newMeteor];
+        }
+        return prevMeteors;
+      });
     };
 
     const meteorInterval = setInterval(spawnMeteor, 2000);
 
     return () => clearInterval(meteorInterval);
-  }, []);
-
-  useEffect(() => {
-    const updateMeteors = () => {
-      setMeteors((prevMeteors) =>
-        prevMeteors.map((meteor) => ({
-          ...meteor,
-          top: meteor.top + 2,
-        }))
-      );
-    };
-
-    const interval = setInterval(updateMeteors, 20);
-
-    return () => clearInterval(interval);
-  }, []);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setBullets((prevBullets) =>
-        prevBullets
-          .map((bullet) => ({
-            ...bullet,
-            bottom: bullet.bottom + 10,
-          }))
-          .filter((bullet) => bullet.bottom < window.innerHeight)
-      );
-    }, 50);
-
-    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {
@@ -76,61 +68,66 @@ const GamePesawat = () => {
 
   const shootBullet = () => {
     const newBullet = {
+      id: Math.random(),
       left: sign + 35,
       bottom: 96,
+      top: window.innerHeight - 96 - 10,
     };
     setBullets((prevBullets) => [...prevBullets, newBullet]);
+    console.log("Bullet shot:", newBullet);
   };
 
-  useEffect(() => {
-    const detectCollisions = () => {
-      setBullets((prevBullets) => {
-        const newBullets = [];
-        const updatedMeteors = [];
+  const removeMeteor = (meteorId) => {
+    setMeteors((prevMeteors) =>
+      prevMeteors.filter((meteor) => meteor.id !== meteorId)
+    );
+  };
 
-        prevBullets.forEach((bullet) => {
-          let hit = false;
+  const detectCollisions = () => {
+    setMeteors((prevMeteors) => {
+      const remainingMeteors = [];
+      prevMeteors.forEach((meteor) => {
+        let hit = false;
+        setBullets((prevBullets) => {
+          const newBullets = prevBullets.filter((bullet) => {
+            const bulletHitMeteor =
+              bullet.left >= meteor.left &&
+              bullet.left <= meteor.left + 24 &&
+              bullet.top >= meteor.top &&
+              bullet.top <= meteor.top + 24;
 
-          meteors.forEach((meteor) => {
-            if (
-              bullet.left > meteor.left &&
-              bullet.left < meteor.left + 24 &&
-              bullet.bottom > meteor.top &&
-              bullet.bottom < meteor.top + 24
-            ) {
-              setPoints((prevPoints) => prevPoints + 1);
+            if (bulletHitMeteor) {
               hit = true;
+              setPoints((prevPoints) => prevPoints + 1);
+              console.log("Hit detected:", meteor, bullet);
+              removeMeteor(meteor.id);
             }
+
+            return !bulletHitMeteor;
           });
-
-          if (!hit) {
-            newBullets.push(bullet);
-          }
+          return newBullets;
         });
-
-        meteors.forEach((meteor) => {
-          if (
-            !bullets.some(
-              (bullet) =>
-                bullet.left > meteor.left &&
-                bullet.left < meteor.left + 24 &&
-                bullet.bottom > meteor.top &&
-                bullet.bottom < meteor.top + 24
-            )
-          ) {
-            updatedMeteors.push(meteor);
-          }
-        });
-
-        setMeteors(updatedMeteors);
-        return newBullets;
+        if (!hit) {
+          remainingMeteors.push(meteor);
+        }
       });
-    };
+      return remainingMeteors;
+    });
+  };
 
-    const collisionInterval = setInterval(detectCollisions, 20);
-
-    return () => clearInterval(collisionInterval);
-  }, [bullets, meteors]);
+  const handleMeteorOutOfScreen = () => {
+    setMeteors((prevMeteors) => {
+      const remainingMeteors = [];
+      prevMeteors.forEach((meteor) => {
+        if (meteor.top < window.innerHeight) {
+          remainingMeteors.push(meteor);
+        } else {
+          setPoints((prevPoints) => prevPoints - 1);
+        }
+      });
+      return remainingMeteors;
+    });
+  };
 
   return (
     <div className="flex justify-center">
@@ -138,7 +135,7 @@ const GamePesawat = () => {
         <img
           src="./ufo.png"
           alt="ufo"
-          className="w-full -top-40 animate-bounce z-10 absolute"
+          className="w-full -top-40 animate-bounce z-20 absolute"
         />
 
         <img src="./stars.png" alt="stars" className="h-screen absolute" />
@@ -147,7 +144,7 @@ const GamePesawat = () => {
             key={meteor.id}
             src="./meteor.png"
             alt="meteor"
-            className="w-24 absolute animate-pulse"
+            className="w-12 absolute animate-pulse"
             style={{
               top: `${meteor.top}px`,
               left: `${meteor.left}px`,
@@ -157,7 +154,7 @@ const GamePesawat = () => {
 
         {bullets.map((bullet, index) => (
           <div
-            key={index}
+            key={bullet.id}
             className="w-2 h-4 bg-red-500 absolute"
             style={{ left: bullet.left + "px", bottom: bullet.bottom + "px" }}
           ></div>
@@ -175,7 +172,7 @@ const GamePesawat = () => {
           alt="earth"
           className="w-full bottom-0 absolute animate-pulse"
         />
-        <div className="absolute top-5 left-5 bg-white p-2 rounded-xl z-40 text-blue-800 text-2xl">
+        <div className="absolute top-5 z-30 bg-red-200 p-2 rounded-xl font-semibold left-5 text-red-600 text-2xl">
           Points: {points}
         </div>
       </div>
