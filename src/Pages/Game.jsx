@@ -195,7 +195,7 @@ const GamePesawat = () => {
         </svg>
       </div>
       <div
-        className="absolute bottom-5 z-90 right-5"
+        className="absolute bottom-5 z-30 right-5"
         onClick={() => setSign(sign + 20)}
       >
         <svg
@@ -212,17 +212,11 @@ const GamePesawat = () => {
           />
         </svg>
       </div>
-      <div className="absolute bottom-5 z-100 left-5" onClick={shootBullet}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="60"
-          fill="red"
-          className="bi bi-circle-fill"
-          viewBox="0 0 16 16"
-        >
-          <circle cx="8" cy="8" r="8" />
-        </svg>
+      <div
+        className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 left-5"
+        onClick={shootBullet}
+      >
+        <p className="text-center text-xl font-bold text-white">PUSH</p>
       </div>
     </div>
   );
