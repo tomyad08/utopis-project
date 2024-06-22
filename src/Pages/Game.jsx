@@ -92,9 +92,9 @@ const GamePesawat = () => {
           const newBullets = prevBullets.filter((bullet) => {
             const bulletHitMeteor =
               bullet.left >= meteor.left &&
-              bullet.left <= meteor.left + 24 &&
+              bullet.left <= meteor.left + 40 &&
               bullet.top >= meteor.top &&
-              bullet.top <= meteor.top + 24;
+              bullet.top <= meteor.top + 40;
 
             if (bulletHitMeteor) {
               hit = true;
