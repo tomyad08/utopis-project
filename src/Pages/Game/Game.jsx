@@ -85,7 +85,7 @@ const GamePesawat = () => {
     const spawnMeteor = () => {
       if (points < 70) {
         setMeteors((prevMeteors) => {
-          if (prevMeteors.length < numb) {
+          if (prevMeteors.length < 4) {
             const newMeteor = {
               id: Math.random(),
               left: Math.floor(Math.random() * (window.innerWidth - 50)),
@@ -300,13 +300,13 @@ const GamePesawat = () => {
         <img
           src="./rocket.png"
           alt="rocket"
-          className={`w-20 z-10 absolute transition-all ${
+          className={`w-20 z-10 absolute  transition-all ${
             gameOver ? "animate-rocket-up" : ""
           }`}
           ref={rocketRef}
           style={{
             left: `${sign}px`,
-            bottom: gameOver ? `${rocketTop}px` : "24px",
+            bottom: gameOver ? `${rocketTop}px` : "35px",
           }}
         />
         <img
