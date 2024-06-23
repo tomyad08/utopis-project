@@ -19,7 +19,7 @@
 
 @keyframes rocketUp {
   0% {
-    bottom: 50px;
+    bottom: 90px;
   }
   100% {
     bottom: 100vh;
