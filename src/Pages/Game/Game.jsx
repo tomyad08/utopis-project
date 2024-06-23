@@ -306,7 +306,7 @@ const GamePesawat = () => {
           ref={rocketRef}
           style={{
             left: `${sign}px`,
-            bottom: gameOver ? `${rocketTop}px` : "35px",
+            bottom: gameOver ? `${rocketTop}px` : "50px",
           }}
         />
         <img
