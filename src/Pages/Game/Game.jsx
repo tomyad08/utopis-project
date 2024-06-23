@@ -8,6 +8,7 @@ const GamePesawat = () => {
   const [numb, setNumb] = useState(4);
   const [speed, setSpeed] = useState(2);
   const [meteors, setMeteors] = useState([]);
+  const [timeProduce, setTimeProduce] = useState(2000);
   const rocketRef = useRef(null);
 
   useEffect(() => {
@@ -48,7 +49,8 @@ const GamePesawat = () => {
     } else if (points === 51) {
       setLevel("Middle-Hard");
       setNumb(14);
-      setSpeed(3);
+      setTimeProduce(200);
+      setSpeed(2);
     }
 
     const spawnMeteor = () => {
@@ -65,10 +67,10 @@ const GamePesawat = () => {
       });
     };
 
-    const meteorInterval = setInterval(spawnMeteor, 200);
+    const meteorInterval = setInterval(spawnMeteor, timeProduce);
 
     return () => clearInterval(meteorInterval);
-  }, [points, level, numb]);
+  }, [points, level, numb, timeProduce]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
