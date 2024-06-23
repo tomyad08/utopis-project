@@ -8,9 +8,10 @@ const GamePesawat = () => {
   const [numb, setNumb] = useState(4);
   const [speed, setSpeed] = useState(2);
   const [meteors, setMeteors] = useState([]);
+  const [ufos, setUfos] = useState([]);
+  const [ufoHits, setUfoHits] = useState({});
   const [timeProduce, setTimeProduce] = useState(2000);
-  const [ufos, setUfos] = useState([]); // State untuk UFO
-  const [ufoHits, setUfoHits] = useState({}); // State untuk melacak jumlah tembakan yang mengenai UFO
+  const [gameOver, setGameOver] = useState(false);
   const rocketRef = useRef(null);
 
   useEffect(() => {
@@ -61,9 +62,22 @@ const GamePesawat = () => {
       setNumb(14);
       setTimeProduce(200);
       setSpeed(2);
-    } else if (points >= 70) {
+    } else if (points >= 70 && points < 150) {
       setMeteors([]);
-      setLevel("UFO Attack");
+      setUfos((prevUfos) => {
+        if (prevUfos.length < numb) {
+          const newUfo = {
+            id: Math.random(),
+            type: Math.random() > 0.5 ? "UFO1" : "UFO2",
+            left: Math.floor(Math.random() * (window.innerWidth - 50)),
+            top: -50,
+          };
+          return [...prevUfos, newUfo];
+        }
+        return prevUfos;
+      });
+    } else if (points >= 150) {
+      setGameOver(true);
     }
 
     const spawnMeteor = () => {
@@ -82,31 +96,9 @@ const GamePesawat = () => {
       }
     };
 
-    const spawnUfo = () => {
-      if (points >= 70) {
-        setUfos((prevUfos) => {
-          if (prevUfos.length < 5) {
-            const newUfo = {
-              id: Math.random(),
-              left: Math.floor(Math.random() * (window.innerWidth - 50)),
-              top: -50,
-              type: Math.random() < 0.5 ? "UFO1" : "UFO2",
-            };
-            setUfoHits((prevHits) => ({ ...prevHits, [newUfo.id]: 0 }));
-            return [...prevUfos, newUfo];
-          }
-          return prevUfos;
-        });
-      }
-    };
-
     const meteorInterval = setInterval(spawnMeteor, timeProduce);
-    const ufoInterval = setInterval(spawnUfo, timeProduce);
 
-    return () => {
-      clearInterval(meteorInterval);
-      clearInterval(ufoInterval);
-    };
+    return () => clearInterval(meteorInterval);
   }, [points, level, numb, timeProduce]);
 
   useEffect(() => {
@@ -188,11 +180,14 @@ const GamePesawat = () => {
               hit = true;
               setPoints((prevPoints) => prevPoints + 1);
               setUfoHits((prevHits) => {
-                const newHits = prevHits[ufo.id] + 1;
-                if (newHits >= 5) {
+                const newHits = {
+                  ...prevHits,
+                  [ufo.id]: (prevHits[ufo.id] || 0) + 1,
+                };
+                if (newHits[ufo.id] >= 5) {
                   removeUfo(ufo.id);
                 }
-                return { ...prevHits, [ufo.id]: newHits };
+                return newHits;
               });
             }
 
@@ -239,6 +234,14 @@ const GamePesawat = () => {
   return (
     <div className="flex justify-center">
       <div className="h-screen w-screen bg-black overflow-hidden relative">
+        {gameOver && (
+          <div className="absolute inset-0 bg-black bg-opacity-75 flex justify-center items-center">
+            <div className="text-white text-4xl font-bold">
+              Congratss! see you in next level.
+            </div>
+          </div>
+        )}
+
         <img
           src="./ufo.png"
           alt="ufo"
@@ -264,7 +267,7 @@ const GamePesawat = () => {
             key={ufo.id}
             src={`./${ufo.type}.png`}
             alt={ufo.type}
-            className="w-12 absolute animate-pulse"
+            className="w-24 absolute"
             style={{
               top: `${ufo.top}px`,
               left: `${ufo.left}px`,
@@ -283,7 +286,9 @@ const GamePesawat = () => {
         <img
           src="./rocket.png"
           alt="rocket"
-          className="w-20 z-10 bottom-24 absolute"
+          className={`w-20 z-10 absolute transition-all ${
+            gameOver ? "bottom-[-100px]" : "bottom-24"
+          }`}
           ref={rocketRef}
           style={{ left: `${sign}px` }}
         />
