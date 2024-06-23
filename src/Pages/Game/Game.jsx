@@ -37,18 +37,18 @@ const GamePesawat = () => {
   }, [bullets, meteors, speed]);
 
   useEffect(() => {
-    if (points >= 5 && points <= 7) {
+    if (points >= 10 && points <= 30) {
       setLevel("Medium");
       setNumb(6);
       setSpeed(4);
-    } else if (points > 7 && points <= 9) {
+    } else if (points > 30 && points <= 50) {
       setLevel("Hard");
       setNumb(8);
       setSpeed(6);
-    } else if (points > 9) {
-      setLevel("Hardmedium");
+    } else if (points === 51) {
+      setLevel("Middle-Hard");
       setNumb(14);
-      setSpeed(4);
+      setSpeed(3);
     }
 
     const spawnMeteor = () => {
