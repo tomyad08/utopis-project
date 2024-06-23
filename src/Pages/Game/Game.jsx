@@ -39,16 +39,12 @@ const GamePesawat = () => {
   useEffect(() => {
     if (points >= 10 && points <= 30) {
       setLevel("Medium");
-      setNumb(7);
-      setSpeed(4);
+      setNumb(12);
+      setSpeed(3);
     } else if (points > 30 && points <= 50) {
       setLevel("Hard");
       setNumb(8);
       setSpeed(6);
-    } else if (points > 50) {
-      setLevel("Medium-Hard");
-      setNumb(9);
-      speed(2);
     }
 
     const spawnMeteor = () => {
