@@ -13,7 +13,7 @@ import ListQuizSNBT from "./Pages/Listquiz";
 import ListQuizCPNS from "./Pages/ListQuizCPNS";
 import TestMINATPage from "./Pages/TestMINAT";
 import AnalisisPage from "./Pages/AnalisisPage";
-import GamePesawat from "./Pages/Game";
+import GamePesawat from "./Pages/Game/Game";
 
 function App() {
   return (

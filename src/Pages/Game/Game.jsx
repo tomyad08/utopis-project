@@ -4,6 +4,8 @@ const GamePesawat = () => {
   const [sign, setSign] = useState(0);
   const [bullets, setBullets] = useState([]);
   const [points, setPoints] = useState(0);
+  const [level, setLevel] = useState("Easy");
+  const [numb, setNumb] = useState(3);
   const [meteors, setMeteors] = useState([]);
   const rocketRef = useRef(null);
 
@@ -34,9 +36,17 @@ const GamePesawat = () => {
   }, [bullets, meteors]);
 
   useEffect(() => {
+    if (points >= 10 && points <= 20) {
+      setLevel("Medium");
+      setNumb(5);
+    } else if (points >= 20) {
+      setLevel("Hard");
+      setNumb(7);
+    }
+
     const spawnMeteor = () => {
       setMeteors((prevMeteors) => {
-        if (prevMeteors.length < 4) {
+        if (prevMeteors.length < numb) {
           const newMeteor = {
             id: Math.random(),
             left: Math.floor(Math.random() * (window.innerWidth - 50)),
@@ -51,7 +61,7 @@ const GamePesawat = () => {
     const meteorInterval = setInterval(spawnMeteor, 2000);
 
     return () => clearInterval(meteorInterval);
-  }, []);
+  }, [points, level, numb]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -74,7 +84,6 @@ const GamePesawat = () => {
       top: window.innerHeight - 96 - 10,
     };
     setBullets((prevBullets) => [...prevBullets, newBullet]);
-    console.log("Bullet shot:", newBullet);
   };
 
   const removeMeteor = (meteorId) => {
@@ -99,7 +108,6 @@ const GamePesawat = () => {
             if (bulletHitMeteor) {
               hit = true;
               setPoints((prevPoints) => prevPoints + 1);
-              console.log("Hit detected:", meteor, bullet);
               removeMeteor(meteor.id);
             }
 
@@ -174,6 +182,9 @@ const GamePesawat = () => {
         />
         <div className="absolute top-5 z-30 bg-red-200 p-2 rounded-xl font-semibold left-5 text-red-600 text-2xl">
           Points: {points}
+        </div>
+        <div className="absolute right-5 top-5 z-30 bg-red-200 p-2 rounded-xl font-semibold text-red-600 text-2xl">
+          Level: {level}
         </div>
       </div>
       <div
