@@ -58,13 +58,14 @@ const GamePesawat = () => {
       setLevel("Hard");
       setNumb(8);
       setSpeed(6);
-    } else if (points === 51) {
+    } else if (points > 50 && points <= 100) {
       setLevel("Middle-Hard");
-      setNumb(14);
+      setNumb(20);
       setTimeProduce(200);
       setSpeed(2);
-    } else if (points >= 70 && points < 150) {
+    } else if (points >= 101 && points < 200) {
       setMeteors([]);
+      setLevel("UFO Attack");
       setUfos((prevUfos) => {
         if (prevUfos.length < 4) {
           const newUfo = {
@@ -77,9 +78,10 @@ const GamePesawat = () => {
         }
         return prevUfos;
       });
-    } else if (points >= 150 && !gameOver) {
+    } else if (points >= 210 && !gameOver) {
       setGameOver(true);
-      setPoints(150); // Ensure points do not increase after game over
+      setUfos([]);
+      setPoints(200); // Ensure points do not increase after game over
     }
 
     const spawnMeteor = () => {
@@ -226,7 +228,7 @@ const GamePesawat = () => {
         if (meteor.top < window.innerHeight) {
           remainingMeteors.push(meteor);
         } else {
-          setPoints((prevPoints) => prevPoints - 1);
+          setPoints((prevPoints) => prevPoints - 5);
         }
       });
       return remainingMeteors;
