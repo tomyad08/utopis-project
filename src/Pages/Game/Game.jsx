@@ -85,7 +85,7 @@ const GamePesawat = () => {
     const spawnUfo = () => {
       if (points >= 70) {
         setUfos((prevUfos) => {
-          if (prevUfos.length < numb) {
+          if (prevUfos.length < 5) {
             const newUfo = {
               id: Math.random(),
               left: Math.floor(Math.random() * (window.innerWidth - 50)),
@@ -244,10 +244,6 @@ const GamePesawat = () => {
           alt="ufo"
           className="w-full -top-40 animate-bounce z-20 absolute"
         />
-        {/* gambar UFO 1 */}
-        <img src="./UFO1.png" alt="ufo1" className="w-24 absolute" />
-        {/* gambar UFO 2 */}
-        <img src="./UFO2.png" alt="ufo1" className="w-24 absolute" />
 
         <img src="./stars.png" alt="stars" className="h-screen absolute" />
         {meteors.map((meteor) => (
@@ -266,7 +262,7 @@ const GamePesawat = () => {
         {ufos.map((ufo) => (
           <img
             key={ufo.id}
-            src="./UFO1.png"
+            src={`./${ufo.type}.png`}
             alt={ufo.type}
             className="w-12 absolute animate-pulse"
             style={{
