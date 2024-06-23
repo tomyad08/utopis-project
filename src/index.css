@@ -16,3 +16,16 @@
 #backgroundLayar {
   animation: scrollBackground 10s linear infinite;
 }
+
+@keyframes rocketUp {
+  0% {
+    bottom: 24px;
+  }
+  100% {
+    bottom: 100vh;
+  }
+}
+
+.animate-rocket-up {
+  animation: rocketUp 5s forwards;
+}

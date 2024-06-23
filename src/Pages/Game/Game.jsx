@@ -12,6 +12,7 @@ const GamePesawat = () => {
   const [ufoHits, setUfoHits] = useState({});
   const [timeProduce, setTimeProduce] = useState(2000);
   const [gameOver, setGameOver] = useState(false);
+  const [rocketTop, setRocketTop] = useState(24); // new state to control rocket top position
   const rocketRef = useRef(null);
 
   useEffect(() => {
@@ -76,8 +77,9 @@ const GamePesawat = () => {
         }
         return prevUfos;
       });
-    } else if (points >= 150) {
+    } else if (points >= 150 && !gameOver) {
       setGameOver(true);
+      setPoints(150); // Ensure points do not increase after game over
     }
 
     const spawnMeteor = () => {
@@ -99,7 +101,21 @@ const GamePesawat = () => {
     const meteorInterval = setInterval(spawnMeteor, timeProduce);
 
     return () => clearInterval(meteorInterval);
-  }, [points, level, numb, timeProduce]);
+  }, [points, level, numb, timeProduce, gameOver]);
+
+  useEffect(() => {
+    if (gameOver) {
+      const rocketMoveInterval = setInterval(() => {
+        setRocketTop((prevTop) => {
+          if (prevTop >= window.innerHeight) {
+            clearInterval(rocketMoveInterval);
+            return prevTop;
+          }
+          return prevTop + 5;
+        });
+      }, 50);
+    }
+  }, [gameOver]);
 
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -236,8 +252,8 @@ const GamePesawat = () => {
       <div className="h-screen w-screen bg-black overflow-hidden relative">
         {gameOver && (
           <div className="absolute inset-0 bg-black bg-opacity-75 flex justify-center items-center">
-            <div className="text-white text-4xl font-bold">
-              Congratss! see you in next level.
+            <div className="text-white text-3xl text-center p-2 font-bold">
+              Congratsss!! You've accomplished.
             </div>
           </div>
         )}
@@ -247,14 +263,11 @@ const GamePesawat = () => {
           alt="ufo"
           className="w-full -top-40 animate-bounce z-20 absolute"
         />
-
-        <img src="./stars.png" alt="stars" className="h-screen absolute" />
+        {/* gambar UFO 1 */}
         {meteors.map((meteor) => (
-          <img
+          <div
             key={meteor.id}
-            src="./meteor.png"
-            alt="meteor"
-            className="w-12 absolute animate-pulse"
+            className="w-16 h-16 bg-yellow-500 rounded-full absolute animate-pulse"
             style={{
               top: `${meteor.top}px`,
               left: `${meteor.left}px`,
@@ -287,10 +300,13 @@ const GamePesawat = () => {
           src="./rocket.png"
           alt="rocket"
           className={`w-20 z-10 absolute transition-all ${
-            gameOver ? "bottom-[-100px]" : "bottom-24"
+            gameOver ? "animate-rocket-up" : ""
           }`}
           ref={rocketRef}
-          style={{ left: `${sign}px` }}
+          style={{
+            left: `${sign}px`,
+            bottom: gameOver ? `${rocketTop}px` : "24px",
+          }}
         />
         <img
           src="./earth.png"
