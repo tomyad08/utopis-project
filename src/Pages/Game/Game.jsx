@@ -60,7 +60,7 @@ const GamePesawat = () => {
       setSpeed(6);
     } else if (points > 50 && points <= 100) {
       setLevel("Middle-Hard");
-      setNumb(20);
+      setNumb(55);
       setTimeProduce(200);
       setSpeed(2);
     } else if (points >= 101 && points < 200) {
