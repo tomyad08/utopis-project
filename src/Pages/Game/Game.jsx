@@ -240,7 +240,7 @@ const GamePesawat = () => {
         if (ufo.top < window.innerHeight) {
           remainingUfos.push(ufo);
         } else {
-          setPoints((prevPoints) => prevPoints - 1);
+          setPoints((prevPoints) => prevPoints - 10);
         }
       });
       return remainingUfos;
@@ -280,7 +280,7 @@ const GamePesawat = () => {
             key={ufo.id}
             src={`./${ufo.type}.png`}
             alt={ufo.type}
-            className="w-24 absolute"
+            className="w-12 absolute"
             style={{
               top: `${ufo.top}px`,
               left: `${ufo.left}px`,
