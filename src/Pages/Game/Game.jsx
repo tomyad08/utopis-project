@@ -41,10 +41,14 @@ const GamePesawat = () => {
       setLevel("Medium");
       setNumb(7);
       setSpeed(4);
-    } else if (points > 30) {
+    } else if (points > 30 && points <= 50) {
       setLevel("Hard");
       setNumb(8);
       setSpeed(6);
+    } else if (points > 50 && points <= 70) {
+      setLevel("Medium-Hard");
+      setNumb(15);
+      speed(2);
     }
 
     const spawnMeteor = () => {
