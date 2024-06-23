@@ -9,6 +9,8 @@ const GamePesawat = () => {
   const [speed, setSpeed] = useState(2);
   const [meteors, setMeteors] = useState([]);
   const [timeProduce, setTimeProduce] = useState(2000);
+  const [ufos, setUfos] = useState([]); // State untuk UFO
+  const [ufoHits, setUfoHits] = useState({}); // State untuk melacak jumlah tembakan yang mengenai UFO
   const rocketRef = useRef(null);
 
   useEffect(() => {
@@ -17,6 +19,13 @@ const GamePesawat = () => {
         return prevMeteors.map((meteor) => ({
           ...meteor,
           top: meteor.top + speed,
+        }));
+      });
+
+      setUfos((prevUfos) => {
+        return prevUfos.map((ufo) => ({
+          ...ufo,
+          top: ufo.top + speed,
         }));
       });
 
@@ -32,10 +41,11 @@ const GamePesawat = () => {
 
       detectCollisions();
       handleMeteorOutOfScreen();
+      handleUfoOutOfScreen();
     }, 50);
 
     return () => clearInterval(gameLoop);
-  }, [bullets, meteors, speed]);
+  }, [bullets, meteors, ufos, speed]);
 
   useEffect(() => {
     if (points >= 10 && points <= 30) {
@@ -51,25 +61,52 @@ const GamePesawat = () => {
       setNumb(14);
       setTimeProduce(200);
       setSpeed(2);
+    } else if (points >= 70) {
+      setMeteors([]);
+      setLevel("UFO Attack");
     }
 
     const spawnMeteor = () => {
-      setMeteors((prevMeteors) => {
-        if (prevMeteors.length < numb) {
-          const newMeteor = {
-            id: Math.random(),
-            left: Math.floor(Math.random() * (window.innerWidth - 50)),
-            top: -50,
-          };
-          return [...prevMeteors, newMeteor];
-        }
-        return prevMeteors;
-      });
+      if (points < 70) {
+        setMeteors((prevMeteors) => {
+          if (prevMeteors.length < numb) {
+            const newMeteor = {
+              id: Math.random(),
+              left: Math.floor(Math.random() * (window.innerWidth - 50)),
+              top: -50,
+            };
+            return [...prevMeteors, newMeteor];
+          }
+          return prevMeteors;
+        });
+      }
+    };
+
+    const spawnUfo = () => {
+      if (points >= 70) {
+        setUfos((prevUfos) => {
+          if (prevUfos.length < numb) {
+            const newUfo = {
+              id: Math.random(),
+              left: Math.floor(Math.random() * (window.innerWidth - 50)),
+              top: -50,
+              type: Math.random() < 0.5 ? "UFO1" : "UFO2",
+            };
+            setUfoHits((prevHits) => ({ ...prevHits, [newUfo.id]: 0 }));
+            return [...prevUfos, newUfo];
+          }
+          return prevUfos;
+        });
+      }
     };
 
     const meteorInterval = setInterval(spawnMeteor, timeProduce);
+    const ufoInterval = setInterval(spawnUfo, timeProduce);
 
-    return () => clearInterval(meteorInterval);
+    return () => {
+      clearInterval(meteorInterval);
+      clearInterval(ufoInterval);
+    };
   }, [points, level, numb, timeProduce]);
 
   useEffect(() => {
@@ -101,6 +138,10 @@ const GamePesawat = () => {
     );
   };
 
+  const removeUfo = (ufoId) => {
+    setUfos((prevUfos) => prevUfos.filter((ufo) => ufo.id !== ufoId));
+  };
+
   const detectCollisions = () => {
     setMeteors((prevMeteors) => {
       const remainingMeteors = [];
@@ -130,6 +171,41 @@ const GamePesawat = () => {
       });
       return remainingMeteors;
     });
+
+    setUfos((prevUfos) => {
+      const remainingUfos = [];
+      prevUfos.forEach((ufo) => {
+        let hit = false;
+        setBullets((prevBullets) => {
+          const newBullets = prevBullets.filter((bullet) => {
+            const bulletHitUfo =
+              bullet.left >= ufo.left &&
+              bullet.left <= ufo.left + 40 &&
+              bullet.top >= ufo.top &&
+              bullet.top <= ufo.top + 40;
+
+            if (bulletHitUfo) {
+              hit = true;
+              setPoints((prevPoints) => prevPoints + 1);
+              setUfoHits((prevHits) => {
+                const newHits = prevHits[ufo.id] + 1;
+                if (newHits >= 5) {
+                  removeUfo(ufo.id);
+                }
+                return { ...prevHits, [ufo.id]: newHits };
+              });
+            }
+
+            return !bulletHitUfo;
+          });
+          return newBullets;
+        });
+        if (!hit) {
+          remainingUfos.push(ufo);
+        }
+      });
+      return remainingUfos;
+    });
   };
 
   const handleMeteorOutOfScreen = () => {
@@ -146,6 +222,20 @@ const GamePesawat = () => {
     });
   };
 
+  const handleUfoOutOfScreen = () => {
+    setUfos((prevUfos) => {
+      const remainingUfos = [];
+      prevUfos.forEach((ufo) => {
+        if (ufo.top < window.innerHeight) {
+          remainingUfos.push(ufo);
+        } else {
+          setPoints((prevPoints) => prevPoints - 1);
+        }
+      });
+      return remainingUfos;
+    });
+  };
+
   return (
     <div className="flex justify-center">
       <div className="h-screen w-screen bg-black overflow-hidden relative">
@@ -154,6 +244,10 @@ const GamePesawat = () => {
           alt="ufo"
           className="w-full -top-40 animate-bounce z-20 absolute"
         />
+        {/* gambar UFO 1 */}
+        <img src="./UFO1.png" alt="ufo1" className="w-24 absolute" />
+        {/* gambar UFO 2 */}
+        <img src="./UFO2.png" alt="ufo1" className="w-24 absolute" />
 
         <img src="./stars.png" alt="stars" className="h-screen absolute" />
         {meteors.map((meteor) => (
@@ -165,6 +259,19 @@ const GamePesawat = () => {
             style={{
               top: `${meteor.top}px`,
               left: `${meteor.left}px`,
+            }}
+          />
+        ))}
+
+        {ufos.map((ufo) => (
+          <img
+            key={ufo.id}
+            src="./UFO1.png"
+            alt={ufo.type}
+            className="w-12 absolute animate-pulse"
+            style={{
+              top: `${ufo.top}px`,
+              left: `${ufo.left}px`,
             }}
           />
         ))}
@@ -189,10 +296,10 @@ const GamePesawat = () => {
           alt="earth"
           className="w-full bottom-0 absolute animate-pulse"
         />
-        <div className="absolute top-5 z-30 bg-red-200 p-2 rounded-xl font-semibold left-5 text-red-600 text-2xl">
+        <div className="absolute top-5 z-30 bg-red-200 p-2 border border-2 border-white rounded-xl font-semibold left-5 text-red-600 text-sm">
           Points: {points}
         </div>
-        <div className="absolute right-5 top-5 z-30 bg-red-200 p-2 rounded-xl font-semibold text-red-600 text-2xl">
+        <div className="absolute right-5 top-5 z-30 bg-red-200 border border-2 border-white p-2 rounded-xl font-semibold text-red-600 text-sm">
           Level: {level}
         </div>
       </div>
