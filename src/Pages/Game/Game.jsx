@@ -47,7 +47,7 @@ const GamePesawat = () => {
       setSpeed(6);
     } else if (points > 50 && points <= 70) {
       setLevel("Medium-Hard");
-      setNumb(15);
+      setNumb(12);
       speed(2);
     }
 
