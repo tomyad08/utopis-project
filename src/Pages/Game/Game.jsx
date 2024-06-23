@@ -5,7 +5,8 @@ const GamePesawat = () => {
   const [bullets, setBullets] = useState([]);
   const [points, setPoints] = useState(0);
   const [level, setLevel] = useState("Easy");
-  const [numb, setNumb] = useState(3);
+  const [numb, setNumb] = useState(4);
+  const [speed, setSpeed] = useState(2);
   const [meteors, setMeteors] = useState([]);
   const rocketRef = useRef(null);
 
@@ -14,7 +15,7 @@ const GamePesawat = () => {
       setMeteors((prevMeteors) => {
         return prevMeteors.map((meteor) => ({
           ...meteor,
-          top: meteor.top + 2,
+          top: meteor.top + speed,
         }));
       });
 
@@ -33,15 +34,17 @@ const GamePesawat = () => {
     }, 50);
 
     return () => clearInterval(gameLoop);
-  }, [bullets, meteors]);
+  }, [bullets, meteors, speed]);
 
   useEffect(() => {
     if (points >= 10 && points <= 20) {
       setLevel("Medium");
-      setNumb(5);
+      setNumb(6);
+      setSpeed(3);
     } else if (points >= 20) {
       setLevel("Hard");
-      setNumb(7);
+      setNumb(8);
+      setSpeed(4);
     }
 
     const spawnMeteor = () => {
