@@ -265,9 +265,10 @@ const GamePesawat = () => {
         />
         {/* gambar UFO 1 */}
         {meteors.map((meteor) => (
-          <div
+          <img
             key={meteor.id}
-            className="w-16 h-16 bg-yellow-500 rounded-full absolute animate-pulse"
+            src="./meteor.png"
+            className="w-12 absolute animate-pulse"
             style={{
               top: `${meteor.top}px`,
               left: `${meteor.left}px`,
