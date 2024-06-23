@@ -66,7 +66,7 @@ const GamePesawat = () => {
     } else if (points >= 70 && points < 150) {
       setMeteors([]);
       setUfos((prevUfos) => {
-        if (prevUfos.length < numb) {
+        if (prevUfos.length < 4) {
           const newUfo = {
             id: Math.random(),
             type: Math.random() > 0.5 ? "UFO1" : "UFO2",
@@ -85,7 +85,7 @@ const GamePesawat = () => {
     const spawnMeteor = () => {
       if (points < 70) {
         setMeteors((prevMeteors) => {
-          if (prevMeteors.length < 4) {
+          if (prevMeteors.length < numb) {
             const newMeteor = {
               id: Math.random(),
               left: Math.floor(Math.random() * (window.innerWidth - 50)),
