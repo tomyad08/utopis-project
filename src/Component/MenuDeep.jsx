@@ -5,6 +5,13 @@ const MenuDeep = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const handleSelect = (value) => {
+    if (localStorage.getItem("linkto")) {
+      localStorage.removeItem("linkto");
+      localStorage.setItem("linkto", location.state.linkto);
+    } else {
+      localStorage.setItem("linkto", location.state.linkto);
+    }
+
     const data = {
       datasiswa: location.state.datasiswa,
       linkto: location.state.linkto,

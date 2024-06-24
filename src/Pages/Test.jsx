@@ -8,6 +8,19 @@ import { ENPOINTS } from "../DataStatics/endpoints";
 const TestPage = () => {
   const location = useLocation();
 
+  useEffect(() => {
+    if (localStorage.getItem("subtest")) {
+      let MapelDone = JSON.parse(localStorage.getItem("subtest"));
+      localStorage.removeItem("subtest");
+      let newMap = { mapel: location.state.subtest };
+      let addMapel = [...MapelDone, newMap];
+      localStorage.setItem("subtest", JSON.stringify(addMapel));
+    } else {
+      let newMap = [{ mapel: location.state.subtest }];
+      localStorage.setItem("subtest", JSON.stringify(newMap));
+    }
+  }, []);
+
   const navigate = useNavigate();
   const timeout = location.state.select;
   const [Data, setData] = useState("");
@@ -35,14 +48,18 @@ const TestPage = () => {
         return value;
       }
     });
-    setNo(setNumber);
+    if (localStorage.getItem("answer")) {
+      setNo(JSON.parse(localStorage.getItem("answer")));
+    } else {
+      setNo(setNumber);
+    }
     setData(y);
   };
   useEffect(() => {
     if (!location.state) {
       navigate("/");
     } else {
-      fetch(location.state.linkto, {
+      fetch(localStorage.getItem("linkto"), {
         method: "GET",
       })
         .then((res) => res.json())
@@ -91,7 +108,14 @@ const TestPage = () => {
         });
       }
     });
-    setNo(setChange);
+    if (localStorage.getItem("answer")) {
+      localStorage.removeItem("answer");
+      localStorage.setItem("answer", JSON.stringify(setChange));
+      setNo(JSON.parse(localStorage.getItem("answer")));
+    } else {
+      localStorage.setItem("answer", JSON.stringify(setChange));
+      setNo(JSON.parse(localStorage.getItem("answer")));
+    }
   };
 
   const handleSelect = (select) => {
@@ -138,6 +162,7 @@ const TestPage = () => {
         navigate("/hasil-test", {
           state: data,
         });
+        localStorage.removeItem("answer");
       })
       .catch(() => {
         setCond(true);
@@ -167,6 +192,12 @@ const TestPage = () => {
   let second = countDown % 60;
 
   const handleSubmit = () => {
+    const Subtest = JSON.parse(localStorage.getItem("subtest")).length;
+    if (Subtest >= 13) {
+      console.log("dapet");
+      localStorage.removeItem("subtest");
+      localStorage.removeItem("linkto");
+    }
     setLoading(true);
     HandlePoint();
   };

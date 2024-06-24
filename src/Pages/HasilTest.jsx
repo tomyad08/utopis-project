@@ -6,6 +6,7 @@ const HasilTest = () => {
   const [notif, setNotif] = useState("");
   const navigate = useNavigate();
   const location = useLocation();
+  const MapelDone = JSON.parse(localStorage.getItem("subtest"));
 
   useEffect(() => {
     if (location.state.nilai <= 700) {
@@ -20,7 +21,9 @@ const HasilTest = () => {
   const handleSelect = (value) => {
     const data = {
       datasiswa: location.state.datasiswa,
-      linkto: value,
+      select: value.time,
+      jumlah: value.jumlah,
+      subtest: value.inisial,
     };
     navigate("/test", {
       state: data,
@@ -43,22 +46,32 @@ const HasilTest = () => {
           <p className="text-end font-semibold">Mila Afiatul Hikmah S.Pd</p>
           <p className="text-end">President of Utopis Project</p>
         </div>
-        <div className="columns-7 xl:mt-5 w-full absolute bottom-0 xl:relative justify-center bg-blue-200 p-4 rounded-lg">
-          {Mapel.map((value) => (
-            <div
-              className="cursor-pointer"
-              key={value.id}
-              onClick={() => handleSelect(value.link)}
-            >
-              <div className="bg-blue-400 text-white flex justify-center rounded-full xl:rounded-lg text-center text-sm p-2 mb-3">
-                <img src={value.picture} className="w-16 xl:w-10" />
+        {MapelDone ? (
+          <div className="flex gap-2 xl:mt-5 w-full absolute bottom-0 xl:relative justify-center bg-blue-200 p-4 rounded-lg">
+            {Mapel.filter(
+              (yItem) =>
+                !MapelDone.some((xItem) => xItem.mapel === yItem.inisial)
+            ).map((value) => (
+              <div
+                className="cursor-pointer"
+                key={value.id}
+                onClick={() => handleSelect(value)}
+              >
+                <div className="bg-blue-400 text-white flex justify-center rounded-full xl:rounded-lg text-center text-sm p-2 mb-3">
+                  <img
+                    src={value.picture}
+                    className="w-12 xl:w-10 rounded-full"
+                  />
+                </div>
+                <p className="text-sm text-center xl:font-semibold">
+                  {value.inisial}
+                </p>
               </div>
-              <p className="text-sm text-center xl:font-semibold">
-                {value.inisial}
-              </p>
-            </div>
-          ))}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );
