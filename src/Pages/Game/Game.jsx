@@ -58,12 +58,12 @@ const GamePesawat = () => {
       setLevel("Hard");
       setNumb(8);
       setSpeed(6);
-    } else if (points > 50 && points <= 90) {
+    } else if (points > 50 && points <= 80) {
       setLevel("Middle-Hard");
       setNumb(55);
       setTimeProduce(200);
       setSpeed(2);
-    } else if (points > 90 && points <= 200) {
+    } else if (points > 80 && points <= 200) {
       setMeteors([]);
       setLevel("UFO Attack");
       setUfos((prevUfos) => {
