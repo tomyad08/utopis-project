@@ -134,9 +134,9 @@ const TestPage = () => {
     }
 
     const endSubmit = {
-      nama_lengkap: location.state.datasiswa.nama_lengkap,
-      kelas: location.state.datasiswa.kelas,
-      sekolah: location.state.datasiswa.sekolah,
+      nama_lengkap: JSON.parse(localStorage.getItem("user")).nama_lengkap,
+      kelas: JSON.parse(localStorage.getItem("user")).kelas,
+      sekolah: JSON.parse(localStorage.getItem("user")).sekolah,
       kode_soal: Data[0].kode_soal,
       tryout: Data[0].tryout,
       nilai: result / location.state.jumlah,

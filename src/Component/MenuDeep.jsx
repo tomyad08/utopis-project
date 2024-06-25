@@ -13,7 +13,7 @@ const MenuDeep = () => {
     }
 
     const data = {
-      datasiswa: location.state.datasiswa,
+      // datasiswa: location.state.datasiswa,
       linkto: location.state.linkto,
       select: value.time,
       jumlah: value.jumlah,

@@ -4,7 +4,7 @@ import { ENPOINTS } from "../DataStatics/endpoints";
 
 const QuizCPNS = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+  // const location = useLocation();
   const [datas, setDatas] = useState("");
 
   const handleSelect = (value) => {
@@ -12,7 +12,7 @@ const QuizCPNS = () => {
     datas.filter((x) => {
       if (value.group === x.materi) {
         data = {
-          datasiswa: location.state,
+          // datasiswa: location.state,
           linkto: x.link,
           select: value.group,
           jumlah: value.jumlah,

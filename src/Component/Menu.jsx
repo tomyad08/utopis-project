@@ -7,7 +7,7 @@ const Menu = () => {
   const [data, setData] = useState();
   const [pin, setPin] = useState();
   const navigate = useNavigate();
-  const location = useLocation();
+
   useEffect(() => {
     fetch(ENPOINTS.MERGETO, {
       method: "GET",
@@ -22,7 +22,7 @@ const Menu = () => {
     data.filter((value) => {
       if (value.password == pin) {
         const datax = {
-          datasiswa: location.state,
+          // datasiswa: location.state,
           linkto: value.link_to,
         };
         navigate("/menu-deep", {
@@ -59,7 +59,7 @@ const Menu = () => {
           </button>
         </a>
         <div>
-          {location.state.link_st30 ? (
+          {localStorage.getItem("user") ? (
             <a>
               <button
                 className="py-2 px-4 text-center text-white rounded-l-lg bg-blue-800 mt-2"

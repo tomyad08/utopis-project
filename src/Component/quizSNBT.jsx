@@ -5,14 +5,14 @@ import { Mapel } from "../DataStatics/Menu";
 
 const QuizSNBT = () => {
   const navigate = useNavigate();
-  const location = useLocation();
+
   const [datas, setDatas] = useState("");
   const handleSelect = (value) => {
     let data = "";
     datas.filter((x) => {
       if (value.inisial === x.mapel) {
         data = {
-          datasiswa: location.state,
+          // datasiswa: location.state,
           linkto: x.link,
           select: value.mapel,
           jumlah: value.jumlah,

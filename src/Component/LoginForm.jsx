@@ -10,6 +10,9 @@ const FormLogin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (localStorage.getItem("user")) {
+      navigate("/menu");
+    }
     fetch(ENPOINTS.LOGIN, {
       method: "GET",
     })
@@ -23,6 +26,7 @@ const FormLogin = () => {
     data.map((value) => {
       if (value.username === username) {
         if (value.password === password) {
+          localStorage.setItem("user", JSON.stringify(value));
           navigate("/menu", {
             state: value,
           });

@@ -13,7 +13,8 @@ const Report = () => {
     let y = 0;
     const x = data.filter((value) => {
       if (
-        value.nama_lengkap === location.state.nama_lengkap &&
+        value.nama_lengkap ===
+          JSON.parse(localStorage.getItem("user")).nama_lengkap &&
         value.tryout === Number(filter)
       ) {
         y += value.nilai;

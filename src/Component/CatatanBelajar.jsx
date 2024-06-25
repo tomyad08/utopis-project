@@ -1,50 +1,49 @@
 import { useLocation, useNavigate } from "react-router-dom";
 
 const CatatanBelajar = () => {
-  const location = useLocation();
   const navigate = useNavigate();
-
+  const transitLink = JSON.parse(localStorage.getItem("user"));
   const data = [
     {
       id: 1,
       nama: "PU",
-      link: location.state.pu,
+      link: transitLink.pu,
       color: "red",
     },
     {
       id: 2,
       nama: "PM",
-      link: location.state.pm,
+      link: transitLink.pm,
       color: "blue",
     },
     {
       id: 3,
       nama: "PK",
-      link: location.state.pk,
+      link: transitLink.pk,
       color: "yellow",
     },
     {
       id: 4,
       nama: "PBM",
-      link: location.state.pbm,
+      link: transitLink.pbm,
       color: "grey",
     },
     {
       id: 5,
       nama: "PPU",
-      link: location.state.ppu,
+      link: transitLink.ppu,
       color: "orange",
     },
     {
       id: 6,
       nama: "LBING",
-      link: location.state.lbing,
+      link: transitLink.lbing,
       color: "black",
     },
     {
       id: 7,
       nama: "LBIND",
-      link: location.state.lbind,
+      link: transitLink.lbind,
       color: "green",
     },
   ];
