@@ -49,7 +49,7 @@ const Menu = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-between md:justify-center gap-2 mt-2">
+      <div className="flex justify-center md:justify-center gap-2 mt-2">
         <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php">
           <button
             className=" py-2 px-4 text-center text-white rounded-lg bg-blue-500 mt-2"
@@ -62,7 +62,7 @@ const Menu = () => {
           {localStorage.getItem("user") ? (
             <a>
               <button
-                className="py-2 px-4 text-center text-white rounded-l-lg bg-blue-800 mt-2"
+                className="py-2 px-4 text-center text-white rounded-lg bg-amber-600 mt-2"
                 style={{ fontSize: "10px" }}
                 onClick={() => navigate("/test-minat")}
               >
@@ -71,21 +71,13 @@ const Menu = () => {
             </a>
           ) : (
             <button
-              className="py-2 px-4 text-center text-white rounded-l-lg bg-blue-500 mt-2"
+              className="py-2 px-4 text-center text-white rounded-lg bg-amber-500 mt-2"
               style={{ fontSize: "10px" }}
               onClick={() => navigate("/no-link")}
             >
               Test ST-30
             </button>
           )}
-          <a href="https://forms.gle/5xFyAHNNTgdTcrVJ9">
-            <button
-              className=" py-2 px-4 text-center text-white rounded-r-lg bg-red-500 mt-2"
-              style={{ fontSize: "10px" }}
-            >
-              Submit file ST-30
-            </button>
-          </a>
         </div>
       </div>
     </div>

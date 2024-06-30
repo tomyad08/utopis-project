@@ -63,7 +63,7 @@ const QuizCPNS = () => {
                 <div className="flex justify-center text-center text-sm mb-3 p-2">
                   <img
                     src={value.picture}
-                    className="w-30 rounded-xl border-2 border-blue-300"
+                    className="w-32 rounded-xl border-2 border-blue-300"
                     alt=""
                   />
                 </div>

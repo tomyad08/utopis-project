@@ -1,11 +1,9 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { MenuSNBT } from "../DataStatics/MenuSNBT";
 import { MenuCPNS } from "../DataStatics/MenuCPNS";
 
 const ListQuizCPNS = () => {
   const [list, setList] = useState("");
-  const [datas, setDatas] = useState("");
   const location = useLocation();
 
   useEffect(() => {

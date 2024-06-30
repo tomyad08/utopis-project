@@ -22,10 +22,18 @@ const TestPage = () => {
   }, []);
 
   const navigate = useNavigate();
-  const timeout = location.state.select;
+
   const [Data, setData] = useState("");
   const [count, setCount] = useState(1);
-  const [countDown, setCountdown] = useState(timeout);
+  const [countDown, setCountdown] = useState(() => {
+    const times = localStorage.getItem("times");
+    if (times) {
+      return parseInt(times, 10);
+    } else {
+      return location.state.select;
+    }
+  });
+
   const [no, setNo] = useState([]);
   const [notif, setNotif] = useState("");
   const [cond, setCond] = useState(false);
@@ -125,6 +133,7 @@ const TestPage = () => {
       setCount(1);
     }
   };
+
   const HandlePoint = () => {
     let result = 0;
     for (let i = 0; i < Data.length; i++) {
@@ -154,7 +163,7 @@ const TestPage = () => {
       datasiswa: location.state.datasiswa,
     };
 
-    fetch(location.state.datasiswa.link_datasiswa, {
+    fetch(JSON.parse(localStorage.getItem("user")).link_datasiswa, {
       method: "POST",
       body: formData,
     })
@@ -163,6 +172,7 @@ const TestPage = () => {
           state: data,
         });
         localStorage.removeItem("answer");
+        localStorage.removeItem("times");
       })
       .catch(() => {
         setCond(true);
@@ -175,13 +185,17 @@ const TestPage = () => {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCountdown((prevCountdown) => prevCountdown - 1);
+      localStorage.removeItem("times");
+      let countTime = countDown - 1;
+      localStorage.setItem("times", countTime.toString());
+      let times = parseInt(localStorage.getItem("times"), 10);
+      setCountdown(times);
     }, 1000);
 
     return () => {
       clearInterval(timer);
     };
-  }, []);
+  }, [countDown]);
 
   const handleSoal = (no_soal) => {
     setCount(no_soal);
@@ -191,13 +205,29 @@ const TestPage = () => {
   let minute = Math.floor((countDown % 3600) / 60);
   let second = countDown % 60;
 
-  const handleSubmit = () => {
-    const Subtest = JSON.parse(localStorage.getItem("subtest")).length;
-    if (Subtest >= 13) {
-      console.log("dapet");
-      localStorage.removeItem("subtest");
-      localStorage.removeItem("linkto");
+  function checkAndRunFunction(arr, callback) {
+    // Extract the 'mapel' values from the array
+    const mapelValues = arr.map((item) => item.mapel);
+
+    // Create a Set from the 'mapel' values to get unique values
+    const uniqueValues = new Set(mapelValues);
+
+    // Check if the number of unique values is 7
+    if (uniqueValues.size === 7) {
+      // Run the callback function if condition is met
+      callback();
     }
+  }
+
+  function myFunction() {
+    localStorage.removeItem("subtest");
+    localStorage.removeItem("linkto");
+  }
+
+  const handleSubmit = () => {
+    const Subtest = JSON.parse(localStorage.getItem("subtest"));
+    checkAndRunFunction(Subtest, myFunction);
+
     setLoading(true);
     HandlePoint();
   };
@@ -205,7 +235,7 @@ const TestPage = () => {
   setTimeout(() => {
     setCond(true);
     setNotif("Mohon maaf waktu sudah habis, silahkan klik Submit.");
-  }, timeout * 1000);
+  }, location.state.select * 1000);
 
   return (
     <div
