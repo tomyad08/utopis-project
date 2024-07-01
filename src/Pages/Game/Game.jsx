@@ -160,7 +160,7 @@ const GamePesawat = () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
   }, [position.x]);
-  console.log(position.x);
+
   const shootBullet = () => {
     const newBullet = {
       id: Math.random(),
@@ -280,47 +280,6 @@ const GamePesawat = () => {
 
   return (
     <div>
-      {/* <div
-        style={{
-          position: "absolute",
-          top: `${position.y}px`,
-          left: `${position.x}px`,
-          width: "50px",
-          height: "50px",
-          backgroundColor: "red",
-        }}
-      />
-      <div>
-        <button
-          onMouseDown={() => startMovement("up")}
-          onMouseUp={stopMovement}
-          onMouseLeave={stopMovement}
-        >
-          Up
-        </button>
-        <button
-          onMouseDown={() => startMovement("down")}
-          onMouseUp={stopMovement}
-          onMouseLeave={stopMovement}
-        >
-          Down
-        </button>
-        <button
-          onMouseDown={() => startMovement("left")}
-          onMouseUp={stopMovement}
-          onMouseLeave={stopMovement}
-        >
-          Left
-        </button>
-        <button
-          onMouseDown={() => startMovement("right")}
-          onMouseUp={stopMovement}
-          onMouseLeave={stopMovement}
-        >
-          Right
-        </button>
-      </div> */}
-
       <div className="flex justify-center">
         <div className="h-screen w-screen bg-black overflow-hidden relative">
           {gameOver && (
@@ -398,10 +357,12 @@ const GamePesawat = () => {
           </div>
         </div>
         <div
-          className="absolute bottom-24 z-30 right-5"
+          className="absolute bottom-24 z-30 left-5"
           onMouseDown={() => startMovement("left")}
           onMouseUp={stopMovement}
           onMouseLeave={stopMovement}
+          onTouchStart={() => startMovement("left")}
+          onTouchEnd={stopMovement}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -418,10 +379,12 @@ const GamePesawat = () => {
           </svg>
         </div>
         <div
-          className="absolute bottom-5 z-30 right-5"
+          className="absolute bottom-5 z-30 left-5"
           onMouseDown={() => startMovement("right")}
           onMouseUp={stopMovement}
           onMouseLeave={stopMovement}
+          onTouchStart={() => startMovement("right")}
+          onTouchEnd={stopMovement}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -438,7 +401,7 @@ const GamePesawat = () => {
           </svg>
         </div>
         <div
-          className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 left-5"
+          className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 right-5"
           onClick={shootBullet}
         >
           <p className="text-center text-xl font-bold text-white">PUSH</p>
