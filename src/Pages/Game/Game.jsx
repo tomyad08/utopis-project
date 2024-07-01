@@ -403,9 +403,7 @@ const GamePesawat = () => {
         <div
           className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 right-5"
           onClick={shootBullet}
-        >
-          <p className="text-center text-xl font-bold text-white">PUSH</p>
-        </div>
+        ></div>
       </div>
     </div>
   );
