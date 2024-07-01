@@ -36,18 +36,35 @@ const GamePesawat = () => {
 
     intervalRef.current = setInterval(() => {
       setPosition((prevPosition) => {
+        let newX = prevPosition.x;
+        let newY = prevPosition.y;
+
         switch (direction) {
           case "up":
-            return { ...prevPosition, y: prevPosition.y - 10 };
+            newY -= 10;
+            break;
           case "down":
-            return { ...prevPosition, y: prevPosition.y + 10 };
+            newY += 10;
+            break;
           case "left":
-            return { ...prevPosition, x: prevPosition.x - 10 };
+            newX -= 10;
+            break;
           case "right":
-            return { ...prevPosition, x: prevPosition.x + 10 };
+            newX += 10;
+            break;
           default:
-            return prevPosition;
+            break;
         }
+
+        const rocketWidth = 80;
+        const rocketHeight = 80;
+        const windowWidth = window.innerWidth;
+        const windowHeight = window.innerHeight;
+
+        newX = Math.max(0, Math.min(windowWidth - rocketWidth, newX));
+        newY = Math.max(0, Math.min(windowHeight - rocketHeight, newY));
+
+        return { x: newX, y: newY };
       });
     }, 100);
   };
