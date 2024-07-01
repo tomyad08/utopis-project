@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 
 const GamePesawat = () => {
-  const [sign, setSign] = useState(0);
   const [bullets, setBullets] = useState([]);
   const [points, setPoints] = useState(0);
   const [level, setLevel] = useState("Easy");
@@ -14,6 +13,36 @@ const GamePesawat = () => {
   const [gameOver, setGameOver] = useState(false);
   const [rocketTop, setRocketTop] = useState(24); // new state to control rocket top position
   const rocketRef = useRef(null);
+  const [position, setPosition] = useState({ x: 0, y: 0 });
+  const intervalRef = useRef(null);
+
+  const startMovement = (direction) => {
+    if (intervalRef.current) return;
+
+    intervalRef.current = setInterval(() => {
+      setPosition((prevPosition) => {
+        switch (direction) {
+          case "up":
+            return { ...prevPosition, y: prevPosition.y - 10 };
+          case "down":
+            return { ...prevPosition, y: prevPosition.y + 10 };
+          case "left":
+            return { ...prevPosition, x: prevPosition.x - 10 };
+          case "right":
+            return { ...prevPosition, x: prevPosition.x + 10 };
+          default:
+            return prevPosition;
+        }
+      });
+    }, 100);
+  };
+
+  const stopMovement = () => {
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      intervalRef.current = null;
+    }
+  };
 
   useEffect(() => {
     const gameLoop = setInterval(() => {
@@ -130,12 +159,12 @@ const GamePesawat = () => {
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
     };
-  }, [sign]);
-
+  }, [position.x]);
+  console.log(position.x);
   const shootBullet = () => {
     const newBullet = {
       id: Math.random(),
-      left: sign + 35,
+      left: position.x + 35,
       bottom: 96,
       top: window.innerHeight - 96 - 10,
     };
@@ -250,120 +279,170 @@ const GamePesawat = () => {
   };
 
   return (
-    <div className="flex justify-center">
-      <div className="h-screen w-screen bg-black overflow-hidden relative">
-        {gameOver && (
-          <div className="absolute inset-0 bg-black bg-opacity-75 flex justify-center items-center">
-            <div className="text-white text-3xl text-center p-2 font-bold">
-              Congratsss!! You've accomplished.
+    <div>
+      {/* <div
+        style={{
+          position: "absolute",
+          top: `${position.y}px`,
+          left: `${position.x}px`,
+          width: "50px",
+          height: "50px",
+          backgroundColor: "red",
+        }}
+      />
+      <div>
+        <button
+          onMouseDown={() => startMovement("up")}
+          onMouseUp={stopMovement}
+          onMouseLeave={stopMovement}
+        >
+          Up
+        </button>
+        <button
+          onMouseDown={() => startMovement("down")}
+          onMouseUp={stopMovement}
+          onMouseLeave={stopMovement}
+        >
+          Down
+        </button>
+        <button
+          onMouseDown={() => startMovement("left")}
+          onMouseUp={stopMovement}
+          onMouseLeave={stopMovement}
+        >
+          Left
+        </button>
+        <button
+          onMouseDown={() => startMovement("right")}
+          onMouseUp={stopMovement}
+          onMouseLeave={stopMovement}
+        >
+          Right
+        </button>
+      </div> */}
+
+      <div className="flex justify-center">
+        <div className="h-screen w-screen bg-black overflow-hidden relative">
+          {gameOver && (
+            <div className="absolute inset-0 bg-black bg-opacity-75 flex justify-center items-center">
+              <div className="text-white text-3xl text-center p-2 font-bold">
+                Congratsss!! You've accomplished.
+              </div>
             </div>
+          )}
+
+          <img
+            src="./ufo.png"
+            alt="ufo"
+            className="w-full -top-40 animate-bounce z-20 absolute"
+          />
+          {/* gambar UFO 1 */}
+          {meteors.map((meteor) => (
+            <img
+              key={meteor.id}
+              src="./meteor.png"
+              className="w-12 absolute animate-pulse"
+              style={{
+                top: `${meteor.top}px`,
+                left: `${meteor.left}px`,
+              }}
+            />
+          ))}
+
+          {ufos.map((ufo) => (
+            <img
+              key={ufo.id}
+              src={`./${ufo.type}.png`}
+              alt={ufo.type}
+              className="w-12 absolute"
+              style={{
+                top: `${ufo.top}px`,
+                left: `${ufo.left}px`,
+              }}
+            />
+          ))}
+
+          {bullets.map((bullet, index) => (
+            <div
+              key={bullet.id}
+              className="w-2 h-4 bg-red-500 absolute"
+              style={{ left: bullet.left + "px", bottom: bullet.bottom + "px" }}
+            ></div>
+          ))}
+
+          <img
+            src="./rocket.png"
+            alt="rocket"
+            className={`w-20 z-10 absolute  transition-all ${
+              gameOver ? "animate-rocket-up" : ""
+            }`}
+            ref={rocketRef}
+            style={{
+              position: "absolute",
+              // top: `${position.y}px`,
+              left: `${position.x}px`,
+
+              bottom: gameOver ? `${rocketTop}px` : "90px",
+            }}
+          />
+          <img
+            src="./earth.png"
+            alt="earth"
+            className="w-full bottom-0 absolute animate-pulse"
+          />
+          <div className="absolute top-5 z-30 bg-red-200 p-2 border border-2 border-white rounded-xl font-semibold left-5 text-red-600 text-sm">
+            Points: {points}
           </div>
-        )}
-
-        <img
-          src="./ufo.png"
-          alt="ufo"
-          className="w-full -top-40 animate-bounce z-20 absolute"
-        />
-        {/* gambar UFO 1 */}
-        {meteors.map((meteor) => (
-          <img
-            key={meteor.id}
-            src="./meteor.png"
-            className="w-12 absolute animate-pulse"
-            style={{
-              top: `${meteor.top}px`,
-              left: `${meteor.left}px`,
-            }}
-          />
-        ))}
-
-        {ufos.map((ufo) => (
-          <img
-            key={ufo.id}
-            src={`./${ufo.type}.png`}
-            alt={ufo.type}
-            className="w-12 absolute"
-            style={{
-              top: `${ufo.top}px`,
-              left: `${ufo.left}px`,
-            }}
-          />
-        ))}
-
-        {bullets.map((bullet, index) => (
-          <div
-            key={bullet.id}
-            className="w-2 h-4 bg-red-500 absolute"
-            style={{ left: bullet.left + "px", bottom: bullet.bottom + "px" }}
-          ></div>
-        ))}
-
-        <img
-          src="./rocket.png"
-          alt="rocket"
-          className={`w-20 z-10 absolute  transition-all ${
-            gameOver ? "animate-rocket-up" : ""
-          }`}
-          ref={rocketRef}
-          style={{
-            left: `${sign}px`,
-            bottom: gameOver ? `${rocketTop}px` : "90px",
-          }}
-        />
-        <img
-          src="./earth.png"
-          alt="earth"
-          className="w-full bottom-0 absolute animate-pulse"
-        />
-        <div className="absolute top-5 z-30 bg-red-200 p-2 border border-2 border-white rounded-xl font-semibold left-5 text-red-600 text-sm">
-          Points: {points}
+          <div className="absolute right-5 top-5 z-30 bg-red-200 border border-2 border-white p-2 rounded-xl font-semibold text-red-600 text-sm">
+            Level: {level}
+          </div>
         </div>
-        <div className="absolute right-5 top-5 z-30 bg-red-200 border border-2 border-white p-2 rounded-xl font-semibold text-red-600 text-sm">
-          Level: {level}
+        <div
+          className="absolute bottom-24 z-30 right-5"
+          onMouseDown={() => startMovement("left")}
+          onMouseUp={stopMovement}
+          onMouseLeave={stopMovement}
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            fill="white"
+            className="bi bi-arrow-left-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
+            />
+          </svg>
         </div>
-      </div>
-      <div
-        className="absolute bottom-24 z-30 right-5"
-        onClick={() => setSign(sign - 20)}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="60"
-          fill="white"
-          className="bi bi-arrow-left-circle"
-          viewBox="0 0 16 16"
+        <div
+          className="absolute bottom-5 z-30 right-5"
+          onMouseDown={() => startMovement("right")}
+          onMouseUp={stopMovement}
+          onMouseLeave={stopMovement}
         >
-          <path
-            fillRule="evenodd"
-            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0m-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5z"
-          />
-        </svg>
-      </div>
-      <div
-        className="absolute bottom-5 z-30 right-5"
-        onClick={() => setSign(sign + 20)}
-      >
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          width="60"
-          height="60"
-          fill="white"
-          className="bi bi-arrow-right-circle"
-          viewBox="0 0 16 16"
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="60"
+            height="60"
+            fill="white"
+            className="bi bi-arrow-right-circle"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fillRule="evenodd"
+              d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
+            />
+          </svg>
+        </div>
+        <div
+          className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 left-5"
+          onClick={shootBullet}
         >
-          <path
-            fillRule="evenodd"
-            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8m15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0M4.5 7.5a.5.5 0 0 0 0 1h5.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3a.5.5 0 0 0 0-.708l-3-3a.5.5 0 1 0-.708.708L10.293 7.5z"
-          />
-        </svg>
-      </div>
-      <div
-        className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 left-5"
-        onClick={shootBullet}
-      >
-        <p className="text-center text-xl font-bold text-white">PUSH</p>
+          <p className="text-center text-xl font-bold text-white">PUSH</p>
+        </div>
       </div>
     </div>
   );
