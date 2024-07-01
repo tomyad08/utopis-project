@@ -15,6 +15,21 @@ const GamePesawat = () => {
   const rocketRef = useRef(null);
   const [position, setPosition] = useState({ x: 0, y: 0 });
   const intervalRef = useRef(null);
+  const shootIntervalRef = useRef(null);
+
+  const startShooting = () => {
+    if (shootIntervalRef.current) return;
+
+    shootBullet();
+    shootIntervalRef.current = setInterval(shootBullet, 100);
+  };
+
+  const stopShooting = () => {
+    if (shootIntervalRef.current) {
+      clearInterval(shootIntervalRef.current);
+      shootIntervalRef.current = null;
+    }
+  };
 
   const startMovement = (direction) => {
     if (intervalRef.current) return;
@@ -402,7 +417,11 @@ const GamePesawat = () => {
         </div>
         <div
           className="absolute w-24 h-24 bg-red-600 flex justify-center items-center border border-2 border-white rounded-full bottom-5 z-30 right-5"
-          onClick={shootBullet}
+          onMouseDown={startShooting}
+          onMouseUp={stopShooting}
+          onMouseLeave={stopShooting}
+          onTouchStart={startShooting}
+          onTouchEnd={stopShooting}
         ></div>
       </div>
     </div>
