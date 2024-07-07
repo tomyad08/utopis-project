@@ -162,6 +162,8 @@ const TestPage = () => {
       nilai: result / location.state.jumlah,
     };
 
+    console.log(endSubmit);
+
     var formData = new FormData();
     for (var key in endSubmit) {
       if (endSubmit.hasOwnProperty(key)) {
