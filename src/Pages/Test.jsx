@@ -162,8 +162,6 @@ const TestPage = () => {
       nilai: result / location.state.jumlah,
     };
 
-    console.log(endSubmit);
-
     var formData = new FormData();
     for (var key in endSubmit) {
       if (endSubmit.hasOwnProperty(key)) {
@@ -172,7 +170,7 @@ const TestPage = () => {
     }
 
     const data = {
-      nilai: Math.floor(result / location.state.jumlah),
+      nilai: Math.round(result / location.state.jumlah),
       datasiswa: location.state.datasiswa,
     };
 

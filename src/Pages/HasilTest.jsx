@@ -20,7 +20,6 @@ const HasilTest = () => {
 
   const handleSelect = (value) => {
     const data = {
-      // datasiswa: location.state.datasiswa,
       select: value.time,
       jumlah: value.jumlah,
       subtest: value.inisial,
