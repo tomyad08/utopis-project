@@ -136,9 +136,9 @@ const TestPage = () => {
 
   const HandlePoint = () => {
     let result = 0;
-    benar = 0;
-    salah = 0;
-    kosong = 0;
+    let benar = 0;
+    let salah = 0;
+    let kosong = 0;
     for (let i = 0; i < Data.length; i++) {
       if (Data[i].jawaban === no[i].select) {
         result += 1000;
