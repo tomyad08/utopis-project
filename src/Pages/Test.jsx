@@ -3,7 +3,6 @@ import Latex from "react-latex-next";
 import { useLocation, useNavigate } from "react-router-dom";
 import ComponentSoal from "../Component/ComponentSoal";
 import { useEffect, useState } from "react";
-import { ENPOINTS } from "../DataStatics/endpoints";
 
 const TestPage = () => {
   const location = useLocation();

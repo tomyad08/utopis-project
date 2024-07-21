@@ -23,7 +23,7 @@ const MainMenuPage = () => {
       <Menu />
       <CatatanBelajar />
       <Quiz />
-      <QuizCPNS />
+      {/* <QuizCPNS /> */}
       {/* <Report /> */}
       <Notes />
       <Footer />

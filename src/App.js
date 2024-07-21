@@ -14,6 +14,7 @@ import ListQuizCPNS from "./Pages/ListQuizCPNS";
 import TestMINATPage from "./Pages/TestMINAT";
 import AnalisisPage from "./Pages/AnalisisPage";
 import GamePesawat from "./Pages/Game/Game";
+import HasilQuiz from "./Pages/hasilTestQuiz";
 
 function App() {
   return (
@@ -30,7 +31,8 @@ function App() {
           <Route path="/test-quiz" element={<TestQuiz />} />
           <Route path="/menu-deep" element={<MenuPage />} />
           <Route path="/submit-st30" element={<SubmitST30Pages />} />
-          <Route path="/list-cpns" element={<ListQuizCPNS />} />
+          <Route path="/hasil-test-quiz" element={<HasilQuiz />} />
+          {/* <Route path="/list-cpns" element={<ListQuizCPNS />} /> */}
           <Route path="/list-snbt" element={<ListQuizSNBT />} />
           <Route path="/test-minat" element={<TestMINATPage />} />
           <Route path="/hasil-test-st30" element={<AnalisisPage />} />
