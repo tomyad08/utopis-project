@@ -1,5 +1,4 @@
-import { useLocation, useNavigate } from "react-router-dom";
-import { Mapel } from "../DataStatics/Menu";
+import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { ENPOINTS } from "../DataStatics/endpoints";
 
@@ -22,7 +21,6 @@ const Menu = () => {
     data.filter((value) => {
       if (value.password == pin) {
         const datax = {
-          // datasiswa: location.state,
           linkto: value.link_to,
         };
         navigate("/menu-deep", {
@@ -59,7 +57,7 @@ const Menu = () => {
           </button>
         </a>
         <div>
-          {localStorage.getItem("user") ? (
+          {JSON.parse(localStorage.getItem("user")).link_st30 ? (
             <a>
               <button
                 className="py-2 px-4 text-center text-white rounded-lg bg-amber-600 mt-2"

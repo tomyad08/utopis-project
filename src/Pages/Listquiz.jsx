@@ -66,7 +66,7 @@ const ListQuizSNBT = () => {
                     className="w-full bg-blue-600 p-2 border-2 border-white rounded-xl my-2 text-white font-semibold"
                     onClick={() => handleSelect(value)}
                   >
-                    <h1>{value.kode_soal.replace(/_/g, " ")}</h1>
+                    <h1>{value.kode_soal}</h1>
                   </div>
                 ))}
               </div>

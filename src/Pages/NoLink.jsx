@@ -9,7 +9,13 @@ const NoLink = () => {
           Mohon maap nih cuy, belum ada akses link testnya. Silahkan hubungi Kak
           Mila dulu ya.
         </h1>
-        <a href="https://wa.me/6281933874938?text=Hallo Kak Mila, saya [Nama] dari [Sekolah]. Kak mau nanya, kenapa saya belum punya akses linknya ya?">
+        <a
+          href={`https://wa.me/6281933874938?text=Hallo Kak Mila, saya *${
+            JSON.parse(localStorage.getItem("user")).nama_lengkap
+          }* dari *${
+            JSON.parse(localStorage.getItem("user")).sekolah
+          }*. Kak mau nanya, kenapa saya belum punya akses linknya ya?`}
+        >
           <div className="flex justify-center bg-blue-600 p-2 rounded-lg mt-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
