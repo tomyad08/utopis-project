@@ -10,7 +10,7 @@ const NoLink = () => {
           Mila dulu ya.
         </h1>
         <a
-          href={`https://wa.me/6281933874938?text=Hallo Kak Mila, saya *${
+          href={`https://wa.me/6285712413360?text=Hallo Kak Mila, saya *${
             JSON.parse(localStorage.getItem("user")).nama_lengkap
           }* dari *${
             JSON.parse(localStorage.getItem("user")).sekolah

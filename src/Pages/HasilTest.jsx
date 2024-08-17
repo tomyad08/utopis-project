@@ -38,7 +38,7 @@ const HasilTest = () => {
           <p className="bg-blue-300 py-2 px-5 m-2 rounded-lg">Utopis</p>
         </div>
         <div className="bg-blue-700 border-2 border-white p-5 mx-5 rounded-xl text-white text-center">
-          <h1 className="text-2xl font-semibold">Penalaran Umum</h1>
+          <h1 className="text-2xl font-semibold">UTOPIS PROJECT</h1>
           <h1 className="text-9xl font-bold">{location.state.nilai}</h1>
           <p className="text-2xl font-semibold">{notif}</p>
           <p className="text-end mt-5">Salam,</p>
