@@ -64,7 +64,7 @@ const Menu = () => {
                 style={{ fontSize: "10px" }}
                 onClick={() => navigate("/test-minat")}
               >
-                Test ST-30
+                Test Minat-Bakat
               </button>
             </a>
           ) : (
@@ -73,7 +73,7 @@ const Menu = () => {
               style={{ fontSize: "10px" }}
               onClick={() => navigate("/no-link")}
             >
-              Test ST-30
+              Test Minat-Bakat
             </button>
           )}
         </div>

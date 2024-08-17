@@ -14,7 +14,7 @@ const NoLink = () => {
             JSON.parse(localStorage.getItem("user")).nama_lengkap
           }* dari *${
             JSON.parse(localStorage.getItem("user")).sekolah
-          }*. Kak mau nanya, kenapa saya belum punya akses linknya ya?`}
+          }*. Kak mau nanya, kenapa saya belum punya akses link minat-bakat ya?`}
         >
           <div className="flex justify-center bg-blue-600 p-2 rounded-lg mt-5">
             <svg
