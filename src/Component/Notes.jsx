@@ -2,23 +2,16 @@ const Notes = () => {
   const data = [
     {
       id: 1,
-      nama: "Hani Aliyah",
-      desk: "Seenggaknya saya tau kalau saya ternyata punya bakat anlasis, resoterer, dan juga caretaker. Insya Allah makin yakin jadi Dokter.",
-      hastag: "#PejuangKedokteran #UI #ITB",
-      gambar: "./karantina.jpg",
-    },
-    {
-      id: 2,
-      nama: "Hani Aliyah",
-      desk: "Seenggaknya saya tau kalau saya ternyata punya bakat anlasis, resoterer, dan juga caretaker. Insya Allah makin yakin jadi Dokter.",
-      hastag: "#PejuangKedokteran #UI #ITB",
-      gambar: "./karantina.jpg",
+      nama: "AFFAN REFKA RIFIANSYAH & WINIKE NURHALIKA",
+      desk: "Konsultasi terkait peran yang tepat berdasarkan minat dan bakat dominan.",
+      hastag: "#PejuangHI #PejuangTeknikKebumian",
+      gambar: "./review.jpg",
     },
   ];
   return (
     <div className="mx-5 xl:hidden">
       <h1 className="text-sm font-semibold text-blue-700">Aktivitas</h1>
-      <div className="columns-2 ">
+      <div className="columns-1 ">
         {data.map((value) => (
           <div
             className=" bg-blue-200 rounded-lg pb-5 px-1 pt-1 mb-5"
