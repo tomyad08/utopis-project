@@ -10,22 +10,18 @@ const FormLogin = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    // if (JSON.parse(localStorage.getItem("user")).nama) {
-    //   navigate("/menu");
-    // }
     fetch(ENPOINTS.LOGIN, {
       method: "GET",
     })
       .then((res) => res.json())
       .then((data) => {
+        setData(data);
         data.filter((value) => {
           if (
             JSON.parse(localStorage.getItem("user")).nama_lengkap ===
             value.nama_lengkap
           ) {
             navigate("/menu");
-          } else {
-            setData(data);
           }
         });
       });
