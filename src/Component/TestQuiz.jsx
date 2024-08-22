@@ -2,6 +2,7 @@ import "katex/dist/katex.min.css";
 import Latex from "react-latex-next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { ENPOINTS } from "../DataStatics/endpoints";
 
 const TestPageQuiz = () => {
   const location = useLocation();
@@ -120,10 +121,30 @@ const TestPageQuiz = () => {
       }
     }
 
+    const SubData = {
+      nama_lengkap: localStorage.getItem("user").nama_lengkap,
+      asal_sekolah: localStorage.getItem("user").asal_sekolah,
+      submateri: location.state.kode_soal,
+      nilai: result,
+    };
+
+    var formData = new FormData();
+    for (var key in SubData) {
+      if (endSubmit.hasOwnProperty(key)) {
+        formData.append(key, SubData[key]);
+      }
+    }
+
+    fetch(ENPOINTS.SUBMIT_QUIZ, {
+      method: "POST",
+      body: formData,
+    });
+
     const data = {
       nilai: result,
       datasiswa: location.state.datasiswa,
     };
+
     navigate("/hasil-test-quiz", {
       state: data,
     });

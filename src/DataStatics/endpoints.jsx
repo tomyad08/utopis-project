@@ -13,4 +13,6 @@ exports.ENPOINTS = {
     "https://script.google.com/macros/s/AKfycbwB_pJ9MdVbjktiX4s59uBETieEVsrE9kYsXFxkYcopudp3g-WPAEIqmiKSUSwNvRu7uw/exec",
   ANALISIS_MINAT_BAKAT:
     "https://script.google.com/macros/s/AKfycbzHlGhoEwVX9X-rZO80N6RX1kDR2LBdaG1qoFcAToURSYFaKvOZ_DCwVA0LnCtADfo2/exec",
+  SUBMIT_QUIZ:
+    "https://script.google.com/macros/s/AKfycbwu39llh6nZrtwFeIm-GOzSsM2hnvIBENCoA4h-mLVjBheuMsTSKAEpkhMNdQHnEtsq/exec",
 };
