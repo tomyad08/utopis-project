@@ -130,7 +130,7 @@ const TestPageQuiz = () => {
 
     var formData = new FormData();
     for (var key in SubData) {
-      if (endSubmit.hasOwnProperty(key)) {
+      if (SubData.hasOwnProperty(key)) {
         formData.append(key, SubData[key]);
       }
     }
