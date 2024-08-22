@@ -122,8 +122,8 @@ const TestPageQuiz = () => {
     }
 
     const SubData = {
-      nama_lengkap: localStorage.getItem("user").nama_lengkap,
-      asal_sekolah: localStorage.getItem("user").asal_sekolah,
+      nama_lengkap: JSON.parse(localStorage.getItem("user")).nama_lengkap,
+      asal_sekolah: JSON.parse(localStorage.getItem("user")).asal_sekolah,
       submateri: location.state.kode_soal,
       nilai: result,
     };
