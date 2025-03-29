@@ -200,7 +200,11 @@ const TestPageQuiz = () => {
                       <p>Soal {count}</p>
                     </div>
                     <div>
-                      <p className="p-2 text-sm font-bold">Utopis</p>
+                      <img
+                        src="./logo_cerdikia.PNG"
+                        alt="logo"
+                        className="w-24 bg-white px-3 py-1 rounded-xl border border-1 border-blue-500"
+                      />
                     </div>
                   </div>
                   {Data[count - 1].bacaan || Data[count - 1].soal_gambar ? (

@@ -4,16 +4,6 @@ import { useLocation, useNavigate } from "react-router-dom";
 const NavigationBar = () => {
   const navigate = useNavigate();
   const [condition, setCondition] = useState(false);
-  const data = [
-    {
-      id: 1,
-      gambar: "./Banner.PNG",
-    },
-    {
-      id: 2,
-      gambar: "./voucher.PNG",
-    },
-  ];
 
   const handleLogOut = () => {
     navigate("/");
@@ -24,16 +14,25 @@ const NavigationBar = () => {
 
   return (
     <div>
-      <div className="p-4 bg-blue-700">
+      <div className="p-4 m-2">
         <div className="flex justify-between">
           <div className="text-white font-semibold">
-            <p className="text-lg">UTOPIS</p>
+            <img
+              src="./logo_cerdikia.PNG"
+              alt="logo"
+              className="w-24 bg-white px-3 py-1 rounded-xl border border-1 border-blue-500"
+            />
           </div>
           <div
-            className="font-semibold text-white"
+            className="font-semibold text-blue-800"
             onClick={() => setCondition(!condition)}
           >
-            <p>Hi, {JSON.parse(localStorage.getItem("user")).nama_lengkap}</p>
+            <p className="text-sm pt-1">
+              Hi,{" "}
+              {localStorage.getItem("user")
+                ? JSON.parse(localStorage.getItem("user")).nama_lengkap
+                : "No Name"}
+            </p>
           </div>
         </div>
         {condition && (
@@ -57,10 +56,12 @@ const NavigationBar = () => {
           </div>
         )}
       </div>
-      <div className="overflow-x-scroll flex">
-        {data.map((value) => (
-          <img src={value.gambar} className="w-9/12" key={value.id} />
-        ))}
+
+      <div className="m-2">
+        <img
+          src={"./cerdikia_banner.PNG"}
+          className="w-full border rounded-xl"
+        />
       </div>
     </div>
   );

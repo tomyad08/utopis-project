@@ -1,9 +1,9 @@
 const Footer = () => {
   return (
-    <div className="p-2 w-full bg-blue-500">
-      <h1 className="text-center font-semibold text-white">@Utopis Project</h1>
+    <div className="p-2 w-full">
+      <h1 className="text-center font-semibold text-blue-800">@Cerdikia</h1>
       <div className="flex justify-center my-2">
-        <div className="flex justify-center bg-blue-800 p-2 rounded-lg">
+        <div className="flex justify-center bg-blue-900 p-2 rounded-lg">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="25"

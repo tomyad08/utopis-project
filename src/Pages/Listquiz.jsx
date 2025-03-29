@@ -46,45 +46,55 @@ const ListQuizSNBT = () => {
   };
 
   return (
-    <div className=" bg-black flex justify-center items-center h-screen">
-      <div className="w-11/12">
-        <div className="bg-blue-300 border-4 border-white p-3 rounded-lg">
-          <div className="p-5 bg-blue-200 rounded-xl mb-5">
-            <h1 className="text-2xl text-blue-900 font-semibold text-center">
-              List Materi
-            </h1>
-            <p className="text-sm font-semibold text-center">
-              Silahkan pilih sub-materi yang ingin kamu gass kerjain.
+    <div>
+      <div className="p-6">
+        <div className="flex justify-between">
+          <div className="text-white font-semibold">
+            <img
+              src="./logo_cerdikia.PNG"
+              alt="logo"
+              className="w-24 bg-white px-3 py-1 rounded-xl border border-1 border-blue-500"
+            />
+          </div>
+          <div className="font-semibold text-blue-800">
+            <p className="text-sm pt-1">
+              Hi,{" "}
+              {localStorage.getItem("user")
+                ? JSON.parse(localStorage.getItem("user")).nama_lengkap
+                : "No Name"}
             </p>
           </div>
-          <div className="p-5 bg-blue-200 rounded-xl">
-            {list ? (
-              <div>
-                {list.map((value) => (
-                  <div
-                    key={value.timestamp}
-                    className="w-full bg-blue-600 p-2 border-2 border-white rounded-xl my-2 text-white font-semibold"
-                    onClick={() => handleSelect(value)}
-                  >
-                    <h1>{value.kode_soal}</h1>
-                  </div>
-                ))}
-              </div>
-            ) : (
-              <div className="h-full w-full flex justify-center items-center">
-                <div>
-                  <img
-                    src="./loading.jpg"
-                    alt="loading"
-                    className="rounded-xl"
-                  />
-                  <h1 className="text-center font-bold text-lg">
-                    Nunggu bentar ya ...
-                  </h1>
+        </div>
+      </div>
+      <div className=" flex justify-center">
+        <div className="w-11/12 p-2">
+          <h1 className="text-2xl text-blue-900 font-semibold">List Materi</h1>
+          <p className="text-sm font-semibold">
+            Silahkan pilih sub-materi yang ingin kamu gass kerjain.
+          </p>
+
+          {list ? (
+            <div>
+              {list.map((value) => (
+                <div
+                  key={value.timestamp}
+                  className="w-full p-2 border-2 border-blue-200 rounded-xl my-2 text-blue-800 font-semibold"
+                  onClick={() => handleSelect(value)}
+                >
+                  <h1>{value.kode_soal}</h1>
                 </div>
+              ))}
+            </div>
+          ) : (
+            <div className="h-full w-full flex justify-center items-center">
+              <div>
+                <img src="./loading.jpg" alt="loading" className="rounded-xl" />
+                <h1 className="text-center font-bold text-lg">
+                  Nunggu bentar ya ...
+                </h1>
               </div>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
     </div>
