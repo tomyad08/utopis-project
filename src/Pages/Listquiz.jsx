@@ -86,11 +86,15 @@ const ListQuizSNBT = () => {
               ))}
             </div>
           ) : (
-            <div className="h-full w-full flex justify-center items-center">
+            <div className="h-full w-full flex justify-center items-center mt-5">
               <div>
-                <img src="./loading.jpg" alt="loading" className="rounded-xl" />
-                <h1 className="text-center font-bold text-lg">
-                  Nunggu bentar ya ...
+                <img
+                  src="./cerdikia_logo_512x512.jpg"
+                  alt="loading"
+                  className="rounded-full drop-shadow-xl animate-pulse"
+                />
+                <h1 className="text-center mt-2 font-bold text-lg">
+                  Loading ...
                 </h1>
               </div>
             </div>

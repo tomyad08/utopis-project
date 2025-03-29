@@ -281,7 +281,7 @@ const TestPage = () => {
       <div className="xl:flex justify-center xl:mt-5 mb-5">
         <div className="xl:w-9/12 flex justify-center">
           {!cond && (
-            <div className="w-11/12 mt-2 bg-blue-800 text-white rounded-lg p-3 drop-shadow-xl">
+            <div className="w-11/12 mt-2 bg-blue-900 text-white rounded-lg p-3 drop-shadow-xl">
               {Data ? (
                 <div>
                   <div className="flex justify-between">

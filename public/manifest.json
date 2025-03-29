@@ -1,19 +1,19 @@
 {
-  "short_name": "Utopis",
-  "name": "Utopis Project",
+  "short_name": "Cerdikia",
+  "name": "Cerdikia",
   "icons": [
     {
-      "src": "berang64x64.png",
+      "src": "cerdikia_logo_64x64.jpg",
       "sizes": "64x64 32x32 24x24 16x16",
       "type": "image/x-icon"
     },
     {
-      "src": "berang192x192.png",
+      "src": "cerdikia_logo_192x192.jpg",
       "type": "image/png",
       "sizes": "192x192"
     },
     {
-      "src": "berang512x512.png",
+      "src": "cerdikia_logo_512x512.jpg",
       "type": "image/png",
       "sizes": "512x512"
     }
