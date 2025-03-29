@@ -3,13 +3,16 @@ const NoCatatan = () => {
     <div className="flex justify-center h-screen items-center bg-blue-100">
       <div className="w-4/5 xl:w-4/12">
         <div className="flex justify-center">
-          <img src="./apologize.png" alt="" className="w-3/5 xl:w-8/12" />
+          <img
+            src="./logo_cerdikia.png"
+            alt=""
+            className="w-3/5 xl:w-8/12 mb-5 rounded-xl"
+          />
         </div>
         <h1 className="text-md font-semibold text-center">
-          Mohon maap nih cuy, belum ada catatan kelas. Silahkan hubungi Kak Mila
-          dulu ya.
+          Mohon maap, belum ada catatan kelas. Silahkan hubungi Kak Mila.
         </h1>
-        <a href="https://wa.me/6281933874938?text=Hallo Kak Mila, saya [Nama] dari [Sekolah]. Kak mau nanya, kenapa saya belum punya catatan kelas ya?">
+        <a href="https://wa.me/6285712413360?text=Hallo Kak Mila, saya [Nama] dari [Sekolah]. Kak mau nanya, kenapa saya belum punya catatan kelas ya?">
           <div className="flex justify-center bg-blue-600 p-2 rounded-lg mt-5">
             <svg
               xmlns="http://www.w3.org/2000/svg"
