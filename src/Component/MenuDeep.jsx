@@ -28,10 +28,10 @@ const MenuDeep = () => {
     <div>
       <div className="px-5 pb-2">
         <h1 className="text-2xl text-center pt-5 font-semibold text-blue-700">
-          TryOut UTOPIS Project
+          TryOut Cerdikia
         </h1>
         <p className="text-sm text-center mb-5 border-b-2 border-blue-800 rounded-lg drop-shadow-xl">
-          Pilih nih cuy, subtest mana yang pengen lu duluin.
+          Pilih subtest yang ingin dikerjakan terlebih dahulu.
         </p>
         <div className="w-full bg-blue-100 rounded-lg p-2">
           {Mapel.map((value) => (

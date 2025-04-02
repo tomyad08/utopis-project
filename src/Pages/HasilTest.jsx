@@ -35,7 +35,13 @@ const HasilTest = () => {
           className="font-semibold absolute top-2 right-4 cursor-pointer"
           onClick={() => navigate("/menu", { state: location.state.datasiswa })}
         >
-          <p className="bg-blue-300 py-2 px-5 m-2 rounded-lg">Utopis</p>
+          <div>
+            <img
+              src="./logo_cerdikia.PNG"
+              alt="logo"
+              className="w-32 bg-white px-3 py-1 rounded-xl border border-1 border-blue-500"
+            />
+          </div>
         </div>
         <div className="bg-blue-700 border-2 border-white p-5 mx-5 rounded-xl text-white text-center">
           <h1 className="text-2xl font-semibold">Cerdikia</h1>
@@ -43,7 +49,7 @@ const HasilTest = () => {
           <p className="text-2xl font-semibold">{notif}</p>
           <p className="text-end mt-5">Salam,</p>
           <p className="text-end font-semibold">Mila Afiatul Hikmah S.Pd</p>
-          <p className="text-end">President of Utopis Project</p>
+          <p className="text-end">President of Cerdikia</p>
         </div>
         {MapelDone ? (
           <div className="flex gap-2 xl:mt-5 w-full absolute bottom-0 xl:relative justify-center bg-blue-200 p-4 rounded-lg">

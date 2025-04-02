@@ -7,11 +7,18 @@ const Notes = () => {
       hastag: "#PejuangHI #PejuangTeknikKebumian",
       gambar: "./review.jpg",
     },
+    {
+      id: 2,
+      nama: "Yasmin (Yayang)",
+      desk: "Belajar subtest materi penalaran umum.",
+      hastag: "#PejuangIlmuGizi",
+      gambar: "./yasmin_review.jpg",
+    },
   ];
   return (
     <div className="mx-5 xl:hidden">
       <h1 className="text-sm font-semibold text-blue-700">Aktivitas</h1>
-      <div className="columns-1 ">
+      <div className="columns-2 ">
         {data.map((value) => (
           <div className="rounded-lg pb-5 px-1 pt-1 mb-5" key={value.id}>
             <img src={value.gambar} className="w-full rounded-xl" />

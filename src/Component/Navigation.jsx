@@ -16,7 +16,7 @@ const NavigationBar = () => {
     <div>
       <div className="p-4 m-2">
         <div className="flex justify-between">
-          <div className="text-white font-semibold">
+          <div>
             <img
               src="./logo_cerdikia.PNG"
               alt="logo"

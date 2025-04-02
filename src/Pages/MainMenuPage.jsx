@@ -5,6 +5,8 @@ import NavigationBar from "../Component/Navigation";
 import Notes from "../Component/Notes";
 import Quiz from "../Component/quizSNBT";
 import { useEffect } from "react";
+import MenuPage from "./MenuPage";
+import Menu from "../Component/Menu";
 
 const MainMenuPage = () => {
   const navigate = useNavigate();
@@ -17,7 +19,7 @@ const MainMenuPage = () => {
   return (
     <div>
       <NavigationBar />
-      {/* <Menu /> */}
+      <Menu />
       <CatatanBelajar />
       <Quiz />
       {/* <QuizCPNS /> */}

@@ -50,7 +50,7 @@ const CatatanBelajar = () => {
   return (
     <div className="p-5">
       <h1 className="text-sm font-semibold text-blue-700">Catatan Belajar</h1>
-      <div className="columns-4 md:columns-7 justify-center gap-1 p-2 rounded-lg">
+      <div className="columns-7 justify-center gap-1 p-2 rounded-lg">
         {data.map((value) => (
           <div className="flex justify-center" key={value.id}>
             {value.link ? (

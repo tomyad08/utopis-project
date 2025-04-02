@@ -47,7 +47,7 @@ const Menu = () => {
           </button>
         </div>
       </div>
-      <div className="flex justify-center md:justify-center gap-2 mt-2">
+      {/* <div className="flex justify-center md:justify-center gap-2 mt-2">
         <a href="https://sidata-ptn-snpmb.bppp.kemdikbud.go.id/ptn_sb.php">
           <button
             className=" py-2 px-4 text-center text-white rounded-lg bg-blue-500 mt-2"
@@ -77,7 +77,7 @@ const Menu = () => {
             </button>
           )}
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };
