@@ -50,7 +50,7 @@ const CatatanBelajar = () => {
   return (
     <div className="p-5">
       <h1 className="text-sm font-semibold text-blue-700">Catatan Belajar</h1>
-      <div className="columns-7 justify-center gap-1 p-2 rounded-lg">
+      <div className="columns-4 justify-center gap-1 p-2 rounded-lg">
         {data.map((value) => (
           <div className="flex justify-center" key={value.id}>
             {value.link ? (
@@ -58,8 +58,8 @@ const CatatanBelajar = () => {
                 <div>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    width="70"
-                    height="70"
+                    width="60"
+                    height="60"
                     fill={value.color}
                     className="bi bi-folder-fill"
                     viewBox="0 0 16 16"
@@ -75,8 +75,8 @@ const CatatanBelajar = () => {
               <div onClick={() => navigate("/no-catatan")}>
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="70"
-                  height="70"
+                  width="60"
+                  height="60"
                   fill={value.color}
                   className="bi bi-folder-fill"
                   viewBox="0 0 16 16"

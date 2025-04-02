@@ -70,7 +70,7 @@ const ListQuizSNBT = () => {
         <div className="w-11/12 p-2">
           <h1 className="text-2xl text-blue-900 font-semibold">List Materi</h1>
           <p className="text-sm font-semibold">
-            Silahkan pilih sub-materi yang ingin kamu gass kerjain.
+            Silahkan pilih sub-materi yang ingin kamu kerjakan terlebih dahulu.
           </p>
 
           {list ? (
